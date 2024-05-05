@@ -1,0 +1,181 @@
+{
+  "header": {
+    "searchField": "Поиск...",
+    "slogan": "Агротехнический колледж<br>имени Султана Ибраимова",
+    "list": {
+      "news": "Новости",
+      "educationalActivity": "Образовательная деятельность",
+      "gallary": "Галерея",
+      "entrants": "Абитуриентам",
+      "teachers": "Преподавателям",
+      "contacts": "Контакты"
+    },
+
+    "previews": {
+      "titles": {
+        "main": "Главная",
+        "blogAndNews": "Блог и новостная лента",
+        "educationActivity": "Образовательная деятельность",
+        "teachers": "Преподавателям"
+      },
+      "descriptions": {
+        "main": "Это главная страница",
+        "blogAndNews": "Страница блогов и новостей КНАУ",
+        "educationActivity": "Образовательная деятельность КНАУ",
+        "teachers": "Страница для преподователей"
+      }
+    }
+  },
+
+  "footer": {
+    "slogan": "Агротехнический колледж<br>имени Султана Ибраимова",
+    "list": {
+      "blogAndNewsFeed": "Блог и новостная лента",
+      "additionalEducation": "Дополнительное образование",
+      "educationalActivity": "Образовательная деятельность",
+      "multimedia": "Мультимедиа",
+      "informationForStudents": "Информация для студентов",
+      "contactInformation": "Контактная информация",
+      "informationForTeachers": "Информация для преподавателей",
+      "aboutTeachers": "О преподавателях",
+      "toApplicants": "Абитуриентам",
+      "electronicLibrary": "Электронная библиотека",
+      "internationalCooperation": "Международное сотрудничество",
+      "siteMap": "Карта сайта",
+      "educationalPortal": "Образовательный портал",
+      "address": "Адрес",
+      "phone": "+996 000 000"
+    }
+  },
+
+  "mainPage": {
+    "mainNews": {
+      "title": "Новости",
+      "link": "Все Новости"
+    },
+
+    "mainInfoBlock": {
+      "titles": {
+        "one": "Твой путь начинается здесь",
+        "two": "Заголовок",
+        "three": "Заголовок",
+        "four": "Заголовок",
+        "five": "Заголовок",
+        "six": "Заголовок"
+      },
+
+      "descriptions": {
+        "one": "Добро пожаловать в наш университет, здесь у нас много всего",
+        "two": "Описание",
+        "three": "Описание",
+        "four": "Описание",
+        "five": "Описание",
+        "six": "Описание"
+      }
+    },
+
+    "mainBlockFeedback": {
+      "title": "Обратная связь",
+      "descriptionOne": "Мы будем рады ответить на ваши вопросы",
+      "descriptionTwo": "Ответим вам в любое время!",
+      "buttonSubmit": "Заполнить форму"
+    }
+  },
+
+  "blogAndNews": {
+    "titles": {
+      "allNews": "Все Новости",
+      "allEvent": "Все мероприятия",
+      "simpleDocs": "Образцы документов",
+      "aboutButton": "Подробнее",
+      "calendar": "Календарь мероприятий"
+    }
+  },
+
+  "educationActivity": {
+    "mission": {
+      "title": "Миссия колледжа",
+      "descriptionOne": "Описание для миссии №1",
+      "descriptionTwo": "Описание для миссии №2"
+    },
+
+    "values": {
+      "title": "Ценности колледжа",
+      "valueOne": {
+        "title": "Ценность №1",
+        "descriptionOne": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean condimentum risus nec massa ultrices maximus. Duis molestie ullamcorper sapien",
+        "descriptionTwo": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean condimentum risus nec massa ultrices maximus. Duis molestie ullamcorper sapien"
+      },
+
+      "valueTwo": {
+        "title": "Ценность №2",
+        "descriptionOne": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean condimentum risus nec massa ultrices maximus. Duis molestie ullamcorper sapien",
+        "descriptionTwo": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean condimentum risus nec massa ultrices maximus. Duis molestie ullamcorper sapien"
+      },
+
+      "valueThree": {
+        "title": "Ценность №3",
+        "descriptionOne": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean condimentum risus nec massa ultrices maximus. Duis molestie ullamcorper sapien",
+        "descriptionTwo": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean condimentum risus nec massa ultrices maximus. Duis molestie ullamcorper sapien"
+      }
+    },
+
+    "strategicGoal": {
+      "title": "Стратегическая цель",
+      "descriptionOne": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean condimentum risus nec massa ultrices maximus. Duis molestie ullamcorper sapien",
+      "descriptionTwo": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean condimentum risus nec massa ultrices maximus. Duis molestie ullamcorper sapien"
+    },
+
+    "routesLearning": {
+      "title": "Основные направления политики качества образования",
+      "routeOne": {
+        "title": "Стратегическая цель",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "buttonText": "Подробнее"
+      },
+      "routeTwo": {
+        "title": "Стратегическая цель",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "buttonText": "Подробнее"
+      },
+      "routeThree": {
+        "title": "Стратегическая цель",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "buttonText": "Подробнее"
+      },
+      "routeFour": {
+        "title": "Стратегическая цель",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "buttonText": "Подробнее"
+      }
+    }
+  },
+
+  "teachers": {
+    "title": "Планы учебных занятий",
+    "button": "Подробнее",
+    "materials": {
+      "title": "Материалы для подготовки лекций",
+      "materialOne": {
+        "title": "Материал 1",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "buttonText": "Подробнее"
+      },
+      "materialTwo": {
+        "title": "Материал 2",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "buttonText": "Подробнее"
+      },
+      "materialThree": {
+        "title": "Материал 3",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "buttonText": "Подробнее"
+      },
+      "materialFour": {
+        "title": "Материал 4",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "buttonText": "Подробнее"
+      }
+    }
+  }
+}

@@ -1,0 +1,247 @@
+"use client"
+
+import { getDictionary } from '@/app/[lang]/dictionaries';
+import { MenuRounded, Search } from '@mui/icons-material';
+import { IconButton, TextField, useMediaQuery, useTheme } from '@mui/material';
+import { useParams, usePathname, useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import ModalHeader from '../modalHeader/component';
+import './styles.css'
+
+const Header = () => {
+  const [language, setLanguage] = useState('ru');
+  const [dict, setDict] = useState('ru');
+  const [modalHeader, setModalHeader] = useState(false);
+
+  const { lang } = useParams()
+  const path = usePathname();
+  const router = useRouter();
+  const theme = useTheme();
+  const isSmScreen = useMediaQuery(theme.breakpoints.down('sm'));
+
+  const headerShadow = '/header-shadow.png'
+  let headerImage;
+  let headerTitle;
+  let headerDescription;
+
+  if (path === `/${lang}` || path === '/' || path === '/ru') {
+    if (isSmScreen) {
+      headerImage = '/header-main-mobile.png';
+      headerTitle = dict?.header?.previews?.titles?.main;
+      headerDescription = dict?.header?.previews?.descriptions?.main;
+
+    } else {
+      headerImage = '/header-main.png';
+      headerTitle = dict?.header?.previews?.titles?.main;
+      headerDescription = dict?.header?.previews?.descriptions?.main;
+    }
+  }
+
+  if (path === `/${lang}/blog-and-news`) {
+    (headerImage = `/blog-and-news-preview.png`),
+      (headerTitle = dict?.header?.previews?.titles?.blogAndNews),
+      (headerDescription = dict?.header?.previews?.descriptions?.blogAndNews)
+  }
+
+  if (path === `/${lang}/blog-and-news`) {
+    (headerImage = `/blog-and-news-preview.png`),
+      (headerTitle = dict?.header?.previews?.titles?.blogAndNews),
+      (headerDescription = dict?.header?.previews?.descriptions?.blogAndNews)
+  }
+
+  if (path === `/${lang}/education-activity`) {
+    (headerImage = `/education-activity-preview.png`),
+      (headerTitle = dict?.header?.previews?.titles?.educationActivity),
+      (headerDescription = dict?.header?.previews?.descriptions?.educationActivity)
+  }
+
+
+  if (path === `/${lang}/teachers`) {
+    (headerImage = `/teachers-preview.png`),
+      (headerTitle = dict?.header?.previews?.titles?.teachers),
+      (headerDescription = dict?.header?.previews?.descriptions?.teachers)
+  }
+  const headerList = [
+    {
+      title: dict?.header?.list?.news,
+      link: `/${lang}/news`
+    },
+
+    {
+      title: dict?.header?.list?.educationalActivity,
+      link: `/${lang}/education-activity`
+    },
+
+    {
+      title: dict?.header?.list?.gallary,
+      link: `/${lang}/gallary`
+    },
+
+    {
+      title: dict?.header?.list?.entrants,
+      link: `/${lang}/entrants`
+    },
+
+    {
+      title: dict?.header?.list?.teachers,
+      link: `/${lang}/teachers`
+    },
+
+    {
+      title: dict?.header?.list?.contacts,
+      link: `/${lang}/contacts`
+    },
+  ]
+
+  const languages = [
+    { selectedLang: 'KG', value: 'kg' },
+    { selectedLang: 'RU', value: 'ru' },
+    { selectedLang: 'EN', value: 'en' },
+  ];
+
+  const handleGetLanguage = async () => {
+    const dict = await getDictionary(language);
+    setDict(dict);
+  };
+
+  const toggleModalHeader = (value) => {
+    setModalHeader(value);
+  };
+
+  const handleChangeLanguage = (value) => {
+    setLanguage(value);
+    getDictionary(language);
+  };
+
+  useEffect(() => {
+    handleGetLanguage();
+    const trimmedPath = path.substring(3);
+    if (language && language !== 'undefined') {
+      router.push(`/${language}${trimmedPath}`);
+    } else {
+      router.push('/ru');
+    }
+  }, [language]);
+
+  return (
+    <div className='w-full'>
+      <div className="w-full h-[79.6px] sm:h-[45.71px] bg-[#0072BC] flex justify-between items-center px-[80px] sm:px-[20px]">
+        <div className='max-w-[1440px] mx-auto flex justify-between sm:justify-end w-full gap-3'>
+          <div
+            className='flex gap-[30px] justify-between items-center'
+          >
+            <img src='/header-phone.svg' alt='header-phone' className='sm:hidden' />
+            <img src='/header-point.svg' alt='header-point' className='sm:hidden' />
+            <img src='/header-logo.svg' alt='header-logo' className='w-[35.26px] h-[35.26px] sm:hidden' />
+          </div>
+
+          <div className='flex gap-3 items-center'>
+            <form
+            // onSubmit={handleSubmit}
+            // onChange={handleChangeValue}
+            >
+              <TextField
+                sx={{
+                  display: isSmScreen ? "none" : "inline-block",
+                  '& .MuiInputBase-root': {
+                    backgroundColor: '#D9D9D980',
+                    color: "#FFFFFF",
+                    fontSize: "14px",
+                    fontWeight: "600",
+                    borderRadius: '25px',
+                    border: "none",
+                    transition: 'none',
+                    '&:hover': {
+                      backgroundColor: '#D9D9D980',
+                      color: "#FFFFFF",
+                    },
+                  },
+                  '& .MuiInputBase-input': {
+                    padding: '11px 21px',
+                  },
+                  '& .MuiIconButton-root': {
+                    padding: '10px',
+                  },
+                }}
+                InputProps={{
+                  endAdornment: (
+                    <IconButton type="submit">
+                      <Search sx={{ color: "#0072BC", width: "24px", height: "24px" }} />
+                    </IconButton>
+                  ),
+                }}
+                placeholder={String(dict?.header?.searchField)}
+              />
+            </form>
+
+            <div className={`gap-3 flex uppercase tracking-[0.5px] font-[500] text-[18px]`}>{languages?.map(({ selectedLang, value }) => (
+              <span className={`${value === lang ? 'text-[#000]' : 'text-[#fff]'} cursor-pointer`} key={selectedLang}
+                onClick={() => handleChangeLanguage(value)}
+              >{selectedLang}</span>
+            ))}</div>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div className='w-full sm:flex sm:justify-between sm:px-[20px]'>
+        <div className='w-full flex max-w-[1440px] gap-[10px] items-center px-[80px] sm:px-[0px] py-[22px]'>
+          <img src='/big-logo.svg' className='w-[100px] h-[100px] md:w-[70px] md:h-[70px] sm:w-[45.71px] sm:h-[45.71px]' />
+          <span className='text-[20px] md:text-[18px] sm:text-[9.14px] text-[#000] font-[600]' dangerouslySetInnerHTML={{ __html: dict?.header?.slogan }}></span>
+        </div>
+
+        <IconButton onClick={() => toggleModalHeader(true)} sx={{ display: isSmScreen ? "inline-block" : "none" }}>
+          <MenuRounded fontSize='large' htmlColor='#0072BC' />
+        </IconButton>
+      </div>
+
+      <div className='w-full'>
+        <div className='w-full pb-[35px] px-[80px] flex justify-between items-center flex-wrap gap-3 sm:hidden'>{headerList?.map(({ title, link }) => (
+          <a href={link} key={link} className='text-[16px] text-[#0072BC] font-[700] uppercase tracking-[1px]'>{title}</a>
+        ))}</div>
+      </div>
+
+      <div
+        style={{
+          backgroundImage: `url(${headerImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          position: 'relative',
+          zIndex: '90',
+        }}
+        className={`sm:w-full sm:h-[203px] md:w-full md:h-[320px] w-full h-[460px] sm:p-5 md:p-10 p-[100px] flex flex-col gap-[2.5px] justify-start sm:pt-[57px] md:pt-[75px] pt-[91px] items-start`}>
+
+        <img
+          src={headerShadow}
+          alt="Shadow"
+          style={{
+            position: 'absolute',
+            bottom: '0',
+            left: '0',
+            width: '100%',
+            height: '100%',
+          }}
+        />
+
+        <p className='font-montserratBlack opacity-[100] font-black text-[#ffffff] sm:text-[33px] md:text-[37px] text-[48px]'>{headerTitle}</p>
+
+        <span
+          className='font-montserratBlack font-[400] text-[#ffffff] text-[14px]'
+        >
+          {headerDescription}
+        </span>
+      </div>
+
+      <ModalHeader
+        open={modalHeader}
+        onClose={() => toggleModalHeader(false)}
+        language={language}
+        setLanguage={setLanguage}
+      />
+    </div>
+  );
+};
+
+export default Header;
