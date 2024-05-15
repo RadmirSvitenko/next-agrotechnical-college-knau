@@ -121,7 +121,7 @@ const BlogAndNews = ({ dict }) => {
 
   return (
     <div className='flex flex-col'>
-      <div className='pt-[81px] px-[150px] md:px-[70px] sm:px-4 flex flex-col max-w-[1440px]'>
+      <div className='pt-[81px] px-[150px] md:px-[70px] sm:px-4 flex flex-col'>
         <div className='flex w-full gap-3 items-center'>
           <img src='/all-news-title-icon.svg' alt='Все новости' className='w-[72px] h-[72px]' />
           <p className='font-[900] text-[47px] md:text-[30px] sm:text-[22px] text-[#000000]'>{dict?.blogAndNews?.titles?.allNews}</p></div>
@@ -149,8 +149,8 @@ const BlogAndNews = ({ dict }) => {
       </div>
 
       <div className='flex flex-col md:px-[40px] sm:px-4 px-[80px]'>
-        <p className='font-[900] text-[34px] md:text-[28] sm:text-[20px] text-[#000000] pb-[41px]'>{dict?.blogAndNews?.titles?.simpleDocs}</p>
-        <div className='flex md:flex-col sm:flex-col w-full justify-between md:justify-center sm:justify-center items-center gap-3 pb-[34px] pt-[53px]'>
+        <p className='font-[900] text-[34px] sm:text-center md:text-[28] sm:text-[24px] text-[#000000] sm:pb-0 pb-[41px]'>{dict?.blogAndNews?.titles?.simpleDocs}</p>
+        <div className='flex md:flex-col sm:flex-col w-full justify-between md:justify-center sm:justify-center items-center gap-3 pb-[34px] sm:pt-4 pt-[53px]'>
           {testDocs?.map((doc, index) => (
             <div
               onMouseMove={() => setAnimDoc(index)}

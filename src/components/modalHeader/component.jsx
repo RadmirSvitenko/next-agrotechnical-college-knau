@@ -6,8 +6,8 @@ import { IconButton, SwipeableDrawer } from '@mui/material';
 import { useParams, usePathname, useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
-const ModalHeader = ({ open, onClose, language, setLanguage }) => {
-  const [dict, setDict] = useState();
+const ModalHeader = ({ dict, open, onClose, language, setLanguage }) => {
+  const [dictionary, setDictionary] = useState();
 
   const path = usePathname();
   const { lang } = useParams();
@@ -15,7 +15,7 @@ const ModalHeader = ({ open, onClose, language, setLanguage }) => {
 
   const handleGetLanguage = () => {
     const dict = getDictionary(language);
-    setDict(dict);
+    setDictionary(dict);
   };
 
   const handleChangeLanguage = async (value) => {
@@ -25,33 +25,38 @@ const ModalHeader = ({ open, onClose, language, setLanguage }) => {
 
   const headerList = [
     {
+      title: dict?.header?.list?.main,
+      link: `/${lang}/`,
+    },
+
+    {
       title: dict?.header?.list?.news,
-      link: `${lang}/news`,
+      link: `/${lang}/news`,
     },
 
     {
       title: dict?.header?.list?.educationalActivity,
-      link: `${lang}/educationalActivity`,
+      link: `/${lang}/educationalActivity`,
     },
 
     {
       title: dict?.header?.list?.gallary,
-      link: `${lang}/gallary`,
+      link: `/${lang}/gallary`,
     },
 
     {
       title: dict?.header?.list?.entrants,
-      link: `${lang}/entrants`,
+      link: `/${lang}/entrants`,
     },
 
     {
       title: dict?.header?.list?.teachers,
-      link: `${lang}/teachers`,
+      link: `/${lang}/teachers`,
     },
 
     {
       title: dict?.header?.list?.contacts,
-      link: `${lang}/contacts`,
+      link: `/${lang}/contacts`,
     },
   ];
 
@@ -82,40 +87,41 @@ const ModalHeader = ({ open, onClose, language, setLanguage }) => {
       open={open}
       onClose={onClose}
       onOpen={() => open}
-      variant="persistent"
     >
-      {/* <div
+      <div
         className={
           'w-full h-screen flex flex-col items-center justify-between py-3 bg-[#F1F3F4]'
         }
       >
-        <div className={'flex w-full justify-end gap-10 px-4'}>
-          <IconButton onClick={() => handleClose()}>
-            <Close />
-          </IconButton>
-        </div>
+        <div className="flex flex-col gap-7">
+          <div className={'flex w-full justify-end gap-10 px-4'}>
+            <IconButton onClick={() => handleClose()}>
+              <Close />
+            </IconButton>
+          </div>
 
-        <div
-          className={
-            'flex flex-col gap-[24px] justify-evenly items-center flex-wrap'
-          }
-        >
-          {headerList.map(({ title, link }) => (
-            <a
-              href={link}
-              onClick={onClose}
-              className={`text-[11px] font-[600] space-x-1 cursor-pointer hover:text-[#0072BC] transition delay-150 tracking-wide ${
-                path === link ? 'text-[#0072BC]' : 'text-[#000]'
-              }`}
-              key={link}
-            >
-              {title}
-            </a>
-          ))}
+          <div
+            className={
+              'flex flex-col gap-[24px] justify-evenly items-center px-4 flex-wrap'
+            }
+          >
+            {headerList?.map(({ title, link }) => (
+              <a
+                key={link}
+                href={link}
+                onClick={onClose}
+                className={`text-[11px] font-[600] space-x-1 cursor-pointer hover:text-[#0072BC] transition delay-150 tracking-wide ${
+                  path === link ? 'text-[#0072BC]' : 'text-[#000]'
+                }`}
+              >
+                {title}
+              </a>
+            ))}
+          </div>
         </div>
 
         <div className={'flex gap-[24px]'}>
-          {languages.map(({ lang, value }) => (
+          {languages?.map(({ lang, value }) => (
             <p
               className={`text-[18px] tracking-[0.2px] ${
                 value === language
@@ -129,7 +135,7 @@ const ModalHeader = ({ open, onClose, language, setLanguage }) => {
             </p>
           ))}
         </div>
-      </div> */}
+      </div>
     </SwipeableDrawer>
   );
 };

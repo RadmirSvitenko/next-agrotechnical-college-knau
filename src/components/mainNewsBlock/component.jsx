@@ -1,4 +1,6 @@
-import React from 'react';
+'use client';
+
+import React, { useCallback, useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import 'swiper/css';
@@ -7,56 +9,11 @@ import './styles.css';
 
 import { Navigation } from 'swiper/modules';
 import { useParams, useRouter } from 'next/navigation';
+import { API } from '@/requester';
 
-const news = [
-  {
-    image: '/header-main.png',
-    date: '00.00.0000',
-    title: 'Новость1',
-    description:
-      'ОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписание',
-    link: '/',
-  },
-
-  {
-    image: '/header-main.png',
-    date: '00.00.0000',
-    title: 'Новость2',
-    description:
-      'ОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписание',
-    link: '/',
-  },
-
-  {
-    image: '/header-main.png',
-    date: '00.00.0000',
-    title: 'Новость3',
-    description:
-      'ОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписание',
-    link: '/',
-  },
-
-  {
-    image: '/header-main.png',
-    date: '00.00.0000',
-    title: 'Новость4',
-    description:
-      'ОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписание',
-    link: '/',
-  },
-
-  {
-    image: '/header-main.png',
-    date: '00.00.0000',
-    title: 'Новость5',
-    description:
-      'ОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписаниеОписание',
-    link: '/',
-  },
-];
-
-const MainNewsBlock = ({ dict }) => {
+const MainNewsBlock = ({ dict, news }) => {
   const { lang } = useParams();
+
   const router = useRouter();
 
   return (
@@ -73,38 +30,40 @@ const MainNewsBlock = ({ dict }) => {
           loop={true}
           className="mainMobileNews"
         >
-          {news?.map((event) => (
-            <SwiperSlide>
-              <div className="w-[252px] flex flex-col justify-start items-start h-[388px] bg-[#fff] p-[24px] pt-[22px] gap-[14px] overflow-hidden">
-                <img
-                  src={event?.image}
-                  alt={event?.title}
-                  className="w-[203px] h-[190px]"
-                />
-
-                <span className="font-[600] text-[11px] text-[#000]">
-                  {event?.date}
-                </span>
-                <p className="font-[700] text-[25px] text-[#000]">
-                  {event?.title}
-                </p>
-                <span className="block overflow-hidden text-[10px] font-[400] text-[#000] w-full max-h-12 leading-3 truncate">
-                  {event?.description}
-                </span>
-                <p
-                  onClick={() => router.push(`${lang}/news`)}
-                  className="flex gap-3 justify-between items-center font-[700] text-[10.06px] tracking-[0.5px] text-[#0072BC]"
-                >
-                  Подробнее
+          {news &&
+            news.length > 0 &&
+            news?.map((event) => (
+              <SwiperSlide>
+                <div className="w-[252px] flex flex-col justify-start items-start h-[388px] bg-[#fff] p-[24px] pt-[22px] gap-[14px] overflow-hidden">
                   <img
-                    className="w-[3.5px]"
-                    src="next-btn-main-news.png"
-                    alt={event?.title}
+                    src={event?.image}
+                    alt={event?.[`title_${lang}`]}
+                    className="w-[203px] h-[190px]"
                   />
-                </p>
-              </div>
-            </SwiperSlide>
-          ))}
+
+                  <span className="font-[600] text-[11px] text-[#000]">
+                    {event?.date}
+                  </span>
+                  <p className="font-[700] text-[25px] text-[#000]">
+                    {event?.[`title_${lang}`]}
+                  </p>
+                  <span className="block overflow-hidden text-[10px] font-[400] text-[#000] w-full max-h-12 leading-3 truncate">
+                    {event?.[`description_${lang}`]}
+                  </span>
+                  <p
+                    onClick={() => router.push(`${lang}/news`)}
+                    className="flex gap-3 justify-between items-center font-[700] text-[10.06px] tracking-[0.5px] text-[#0072BC]"
+                  >
+                    {dict?.totalTranslate?.about}
+                    <img
+                      className="w-[3.5px]"
+                      src="next-btn-main-news.png"
+                      alt={event?.[`title_${lang}`]}
+                    />
+                  </p>
+                </div>
+              </SwiperSlide>
+            ))}
         </Swiper>
       </div>
 
@@ -125,7 +84,7 @@ const MainNewsBlock = ({ dict }) => {
             <img
               className="w-[3.5px]"
               src="next-btn-main-news.png"
-              alt={event?.title}
+              alt="arrow"
             />
           </span>
         </div>
@@ -137,21 +96,24 @@ const MainNewsBlock = ({ dict }) => {
               <div className="flex flex-col w-1/2">
                 <img
                   src={event?.image}
-                  alt={event?.name}
+                  alt={event?.[`title_${lang}`]}
                   className="w-full h-[35%]"
                 />
                 <div className="bg-[#0072BC] flex flex-col p-8 justify-evenly items-start text-[#fff] w-full h-[65%]">
                   <p className="font-[900] text-[#FFFFFF] md:text-[9px] text-[11px]">
                     {event?.date}
                   </p>
-                  <p className="font-[600] text-[#FFFFFF] md:text-[28px] text-[34px]">
-                    {event?.title}
+                  <p
+                    onClick={() => router.push(`${lang}/news/${event?.id}`)}
+                    className="font-[600] hover:underline hover:cursor-pointer text-[#FFFFFF] md:text-[28px] text-[34px]"
+                  >
+                    {event?.[`title_${lang}`]}
                   </p>
                   <span className="block py-1 overflow-hidden md:text-[14px] text-[18px] text-[#FFFFFF] font-[400] w-full max-h-12 leading-3 truncate">
-                    {event?.description}
+                    {event?.[`description_${lang}`]}
                   </span>
                   <span
-                    onClick={() => router.push(`${lang}/news/1`)}
+                    onClick={() => router.push(`${lang}/news`)}
                     className="flex gap-3 cursor-pointer justify-between items-center font-[700]
           text-[10px] tracking-[1.02px] text-[#ffffff]"
                   >
@@ -160,7 +122,7 @@ const MainNewsBlock = ({ dict }) => {
                     <img
                       className="w-[3.5px]"
                       src="next-btn-main-news.png"
-                      alt={event?.title}
+                      alt={event?.[`title_${lang}`]}
                     />
                   </span>
                 </div>
@@ -175,15 +137,18 @@ const MainNewsBlock = ({ dict }) => {
                   <div className="flex flex-col items-start justify-between">
                     <img
                       src={event?.image}
-                      alt={event?.title}
+                      alt={event?.[`title_${lang}`]}
                       className="w-full h-1/2"
                     />
                     <div className="flex p-4 w-full h-1/2 gap-3 flex-col justify-evenly">
                       <p className="font-[900] text-[#838383] md:text-[9px] text-[11px]">
                         {event?.date}
                       </p>
-                      <span className="block font-[900] text-[#000000] py-1 overflow-hidden text-[18px] md:text-[12px] w-full leading-3 truncate">
-                        {event?.description}
+                      <span
+                        onClick={() => router.push(`${lang}/news/${event?.id}`)}
+                        className="block hover:underline hover:cursor-pointer font-[900] text-[#000000] py-1 overflow-hidden text-[18px] md:text-[12px] w-full leading-3 truncate"
+                      >
+                        {event?.[`description_${lang}`]}
                       </span>
                     </div>
                   </div>

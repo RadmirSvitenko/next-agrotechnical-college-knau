@@ -55,12 +55,42 @@ const Header = () => {
       (headerDescription = dict?.header?.previews?.descriptions?.educationActivity)
   }
 
+  if (path === `/${lang}/gallary`) {
+    (headerImage = `/education-activity-preview.png`),
+      (headerTitle = dict?.header?.previews?.titles?.gallary),
+      (headerDescription = dict?.header?.previews?.descriptions?.gallary)
+  }
 
   if (path === `/${lang}/teachers`) {
     (headerImage = `/teachers-preview.png`),
       (headerTitle = dict?.header?.previews?.titles?.teachers),
       (headerDescription = dict?.header?.previews?.descriptions?.teachers)
   }
+
+  if (path === `/${lang}/contacts`) {
+    (headerImage = `/contacts-preview.png`),
+      (headerTitle = dict?.header?.previews?.titles?.contacts),
+      (headerDescription = dict?.header?.previews?.descriptions?.contacts)
+  }
+
+  if (path === `/${lang}/entrants`) {
+    (headerImage = `/contacts-preview.png`),
+      (headerTitle = dict?.header?.previews?.titles?.entrants),
+      (headerDescription = dict?.header?.previews?.descriptions?.entrants)
+  }
+
+  if (path === `/${lang}/about-teachers`) {
+    (headerImage = `/contacts-preview.png`),
+      (headerTitle = dict?.header?.previews?.titles?.aboutTeachers),
+      (headerDescription = dict?.header?.previews?.descriptions?.aboutTeachers)
+  }
+
+  if (path === `/${lang}/additional-education`) {
+    (headerImage = `/additional-education-preview.png`),
+      (headerTitle = dict?.header?.previews?.titles?.additionalEducation),
+      (headerDescription = dict?.header?.previews?.descriptions?.additionalEducation)
+  }
+
   const headerList = [
     {
       title: dict?.header?.list?.news,
@@ -94,7 +124,7 @@ const Header = () => {
   ]
 
   const languages = [
-    { selectedLang: 'KG', value: 'kg' },
+    { selectedLang: 'KG', value: 'ky' },
     { selectedLang: 'RU', value: 'ru' },
     { selectedLang: 'EN', value: 'en' },
   ];
@@ -142,7 +172,7 @@ const Header = () => {
             >
               <TextField
                 sx={{
-                  display: isSmScreen ? "none" : "inline-block",
+                  // display: isSmScreen ? "none" : "inline-block",
                   '& .MuiInputBase-root': {
                     backgroundColor: '#D9D9D980',
                     color: "#FFFFFF",
@@ -187,7 +217,7 @@ const Header = () => {
 
       <div className='w-full sm:flex sm:justify-between sm:px-[20px]'>
         <div className='w-full flex max-w-[1440px] gap-[10px] items-center px-[80px] sm:px-[0px] py-[22px]'>
-          <img src='/big-logo.svg' className='w-[100px] h-[100px] md:w-[70px] md:h-[70px] sm:w-[45.71px] sm:h-[45.71px]' />
+          <img onClick={() => router.push(`/${lang}/`)} src='/big-logo.svg' className='w-[100px] h-[100px] md:w-[70px] md:h-[70px] sm:w-[45.71px] sm:h-[45.71px]' />
           <span className='text-[20px] md:text-[18px] sm:text-[9.14px] text-[#000] font-[600]' dangerouslySetInnerHTML={{ __html: dict?.header?.slogan }}></span>
         </div>
 
@@ -198,7 +228,7 @@ const Header = () => {
 
       <div className='w-full'>
         <div className='w-full pb-[35px] px-[80px] flex justify-between items-center flex-wrap gap-3 sm:hidden'>{headerList?.map(({ title, link }) => (
-          <a href={link} key={link} className='text-[16px] text-[#0072BC] font-[700] uppercase tracking-[1px]'>{title}</a>
+          <a href={link} key={link} className='text-[14px] text-[#0072BC] font-[700] uppercase tracking-[1px]'>{title}</a>
         ))}</div>
       </div>
 
@@ -211,7 +241,7 @@ const Header = () => {
           position: 'relative',
           zIndex: '90',
         }}
-        className={`sm:w-full sm:h-[203px] md:w-full md:h-[320px] w-full h-[460px] sm:p-5 md:p-10 p-[100px] flex flex-col gap-[2.5px] justify-start sm:pt-[57px] md:pt-[75px] pt-[91px] items-start`}>
+        className={`${path === `/${lang}/site-map` || path === `/${lang}/contacts` ? 'hidden' : 'flex'} sm:w-full sm:h-[300px] md:w-full md:h-[320px] w-full h-[460px] overflow-y-hidden sm:p-5 md:p-10 p-[100px] flex flex-col gap-[2.5px] justify-start sm:pt-[30px] md:pt-[75px] pt-[91px] items-start`}>
 
         <img
           src={headerShadow}
@@ -225,7 +255,7 @@ const Header = () => {
           }}
         />
 
-        <p className='font-montserratBlack opacity-[100] font-black text-[#ffffff] sm:text-[33px] md:text-[37px] text-[48px]'>{headerTitle}</p>
+        <p className='font-montserratBlack opacity-[100] font-black text-[#ffffff] sm:text-[28px] md:text-[37px] text-[48px]'>{headerTitle}</p>
 
         <span
           className='font-montserratBlack font-[400] text-[#ffffff] text-[14px]'
@@ -235,6 +265,7 @@ const Header = () => {
       </div>
 
       <ModalHeader
+        dict={dict}
         open={modalHeader}
         onClose={() => toggleModalHeader(false)}
         language={language}

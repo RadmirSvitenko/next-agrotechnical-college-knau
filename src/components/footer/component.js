@@ -18,22 +18,22 @@ const Footer = () => {
 
   const footerListOne = [
     {
-      name: dict?.footer?.list?.blogAndNewsFeed, link: `${lang}/blog-and-news`
+      name: dict?.footer?.list?.blogAndNewsFeed, link: `/${lang}/blog-and-news`
     },
-    { name: dict?.footer?.list?.additionalEducation, link: "/" },
-    { name: dict?.footer?.list?.educationalActivity, link: "/" },
-    { name: dict?.footer?.list?.multimedia, link: "/" },
-    { name: dict?.footer?.list?.informationForStudents, link: "/" },
-    { name: dict?.footer?.list?.contactInformation, link: "/" },
+    { name: dict?.footer?.list?.additionalEducation, link: `/${lang}/additional-education` },
+    { name: dict?.footer?.list?.educationalActivity, link: `/${lang}/` },
+    { name: dict?.footer?.list?.multimedia, link: `/${lang}/` },
+    { name: dict?.footer?.list?.informationForStudents, link: `/${lang}/` },
+    { name: dict?.footer?.list?.contactInformation, link: `/${lang}/` },
   ]
 
   const footerListTwo = [
-    { name: dict?.footer?.list?.informationForTeachers, link: "/" },
-    { name: dict?.footer?.list?.aboutTeachers, link: "/" },
-    { name: dict?.footer?.list?.toApplicants, link: "/" },
-    { name: dict?.footer?.list?.electronicLibrary, link: "/" },
-    { name: dict?.footer?.list?.internationalCooperation, link: "/" },
-    { name: dict?.footer?.list?.siteMap, link: "/" },
+    { name: dict?.footer?.list?.informationForTeachers, link: `/${lang}/about-teachers` },
+    { name: dict?.footer?.list?.aboutTeachers, link: `/${lang}/about-teachers` },
+    { name: dict?.footer?.list?.toApplicants, link: `/${lang}/` },
+    { name: dict?.footer?.list?.electronicLibrary, link: `/${lang}/` },
+    { name: dict?.footer?.list?.internationalCooperation, link: `/${lang}/` },
+    { name: dict?.footer?.list?.siteMap, link: `/${lang}/site-map` },
   ]
 
   useEffect(() => {
@@ -55,7 +55,7 @@ const Footer = () => {
           </div>
 
           <div className='flex md:px-4 sm:px-3 flex-col gap-[10px] cursor-pointer'>{footerListTwo?.map(({ name, link }) => (
-            <p onClick={() => router.push(`${lang} / ${link}`)} key={link} className='font-[400] text-[16px] text-[#fff] hover:underline'>{name}</p>
+            <p onClick={() => router.push(link)} key={link} className='font-[400] text-[16px] text-[#fff] hover:underline'>{name}</p>
           ))}
           </div>
         </div>

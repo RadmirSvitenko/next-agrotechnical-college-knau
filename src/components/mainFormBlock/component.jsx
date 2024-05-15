@@ -2,8 +2,12 @@
 
 import React from 'react';
 import './styles.css';
+import { useParams, useRouter } from 'next/navigation';
 
 const MainFormBlock = ({ dict }) => {
+  const router = useRouter();
+  const { lang } = useParams();
+
   return (
     <div className="flex w-full flex-col items-center justify-between pt-[50px] pb-[110px] pl-[81px] pr-[61px] gap-[15px]">
       <h4 className="font-[900] text-[24px] text-[#000]">
@@ -29,7 +33,10 @@ const MainFormBlock = ({ dict }) => {
           </p>
         </div>
 
-        <button className="bg-[#0079C1] text-[#FFFFFF] text-[16px] sm:text-[12px] font-[700] text-center px-[72px] md:px-[36px] sm:px-2 py-4 md:py-3 sm:py-2 rounded-lg">
+        <button
+          onClick={() => router.push(`${lang}/contacts`)}
+          className="bg-[#0079C1] text-[#FFFFFF] text-[16px] sm:text-[12px] font-[700] text-center px-[72px] md:px-[36px] sm:px-2 py-4 md:py-3 sm:py-2 rounded-lg"
+        >
           {dict?.mainPage?.mainBlockFeedback?.buttonSubmit}
         </button>
       </div>

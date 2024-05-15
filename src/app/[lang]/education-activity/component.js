@@ -3,7 +3,6 @@
 import React from 'react'
 import "./styles.css"
 import EducationValueCard from '@/components/educationValueCard/component'
-import { usePathname } from 'next/navigation'
 import InfoMiniBox from '@/components/infoMiniBox/component'
 
 const EducationActivity = ({ dict }) => {
@@ -59,8 +58,8 @@ const EducationActivity = ({ dict }) => {
   }]
 
   return (
-    <div className='flex flex-col w-full justify-center pt-[58px] md:pt-[30px] sm:pt-3 px-[125px] md:px=[70px] sm:px-5'>
-      <div className='flex flex-wrap gap-[100px] xl:h-[275px] h-auto py-[18px] px-[20px] border-[1px] border-[#0072BC]'>
+    <div className='flex flex-col w-full justify-center items-center pt-[58px] md:pt-[30px] sm:pt-3 px-[125px] md:px=[70px] sm:px-5'>
+      <div className='flex w-full flex-wrap gap-[100px] xl:h-[275px] h-auto py-[18px] px-[20px] border-[1px] border-[#0072BC]'>
 
         <div style={{
           backgroundImage: `url('/education-activity-preview.png')`,
@@ -92,7 +91,7 @@ const EducationActivity = ({ dict }) => {
         </div>
       </div>
 
-      <div className='w-full border-[1px] gap-5 border-[#0072BC] rounded-[5px] flex flex-wrap md:items-center sm:items-center p-5 justify-between'>
+      <div className='xl:w- lg:w-full xl:w-full max-w-[1440px] border-[1px] gap-5 border-[#0072BC] rounded-[5px] flex flex-wrap md:items-center sm:items-center p-5 justify-between'>
         <div className='flex flex-col justify-evenly xl:max-w-[500px] w-full'>
           <p className='font-[800] text-[34px] xl:text-start text-center text-[#000]'>{dict?.educationActivity?.strategicGoal?.title}</p>
           <span className='font-[400] text-[14px] leading-[22px] text-[#000]'>{dict?.educationActivity?.strategicGoal?.descriptionOne}</span>
@@ -105,25 +104,25 @@ const EducationActivity = ({ dict }) => {
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center"
         }} className='xl:w-[412px] w-full h-[275px] relative flex justify-center items-center rounded-[5px]'>
-          <div className='md:hidden sm:hidden absolute xl:top-[50%] xl:transform xl:translate-y-[-50%] xl:left-0 left-0 transform translate-x-[-50%] rounded-lg bg-white shadow-lg w-[108px] h-[108px] flex justify-center items-center mission-box-icon'>
+          <div className='md:hidden sm:hidden lg:hidden absolute xl:top-[50%] xl:transform xl:translate-y-[-50%] xl:left-0 left-0 transform translate-x-[-50%] rounded-lg bg-white shadow-lg w-[108px] h-[108px] flex justify-center items-center mission-box-icon'>
             <img src='/education-aim-icon.svg' alt='education' />
           </div>
         </div>
       </div>
 
-      <div className='pt-[53px] pb-[55px]'>
-        <div className='flex flex-wrap justify-between  w-full min-h-[450px]'>
-          <div className='flex border-[1px] border-[#0072BC] flex-col p-[22px] xl:w-[422px] w-full'>
+      <div className='pt-[53px] pb-[55px] '>
+        <div className='flex flex-wrap justify-between 
+         lg:w-full xl:w-full max-w-[1000px] w-full min-h-[450px]'>
+          <div className='flex border-[1px] border-[#0072BC] flex-col p-[22px] xl:w-[322px] w-full'>
             <img src='/college-value-preview.png' className='w-full h-[320px] pb-5' />
             <p className='font-[800] text-[34px] md:text-[24px] sm:text-[20px] text-[#000]'>{dict?.educationActivity?.routesLearning?.title}</p>
           </div>
 
-          <div className='xl:w-[50%] w-full md:pt-4 sm:pt-4 justify-center flex-wrap sm:flex-col flex gap-7 items-center'>{mainRoutes?.map((item, index) => (
+          <div className='xl:w-[60%] w-full md:pt-4 sm:pt-4 justify-center flex-wrap sm:flex-col flex gap-7 items-center'>{mainRoutes?.map((item, index) => (
             <InfoMiniBox item={item} key={index} />
           ))}</div>
         </div>
       </div>
-
     </div>
   )
 }

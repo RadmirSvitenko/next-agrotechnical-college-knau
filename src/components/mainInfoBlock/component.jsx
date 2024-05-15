@@ -1,9 +1,13 @@
 'use client';
 
 import { ArrowForwardIos } from '@mui/icons-material';
+import { useParams, useRouter } from 'next/navigation';
 import React from 'react';
 
 const MainInfoBlock = ({ dict }) => {
+  const router = useRouter();
+  const { lang } = useParams();
+
   return (
     <div className="w-full flex flex-wrap">
       {/* 1 */}
@@ -19,11 +23,11 @@ const MainInfoBlock = ({ dict }) => {
             </span>
 
             <span
-              onClick={() => router.push(`${lang}/educationalActivity`)}
+              onClick={() => router.push(`${lang}/education-activity`)}
               className="flex gap-3 pt-[60px] cursor-pointer justify-between items-center font-[700]
           text-[12px] sm:text-[6px] tracking-[1.5px] text-[#ffffff]"
             >
-              {dict?.mainPage?.mainNews?.link}
+              {dict?.totalTranslate?.about}
 
               <ArrowForwardIos
                 sx={{
