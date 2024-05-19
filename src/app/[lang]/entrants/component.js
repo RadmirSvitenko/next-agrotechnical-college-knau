@@ -1,17 +1,66 @@
 "use client"
 
+import InfoMiniBox from '@/components/infoMiniBox/component'
 import PrioretyEntrantsBlock from '@/components/prioretyEntrantsBlock/component'
 import PrioretyEntrantsDate from '@/components/prioretyEntrantsDate/component'
 import { API } from '@/requester'
 import { useParams } from 'next/navigation'
 import React, { useCallback, useEffect, useState } from 'react'
+import "./styles.css"
+import Specialization from '@/components/specialization/component'
+import { Swiper, SwiperSlide } from 'swiper/react'
+
+import 'swiper/css';
+import 'swiper/css/pagination';
+
+import { Navigation } from 'swiper/modules';
+import { Accordion, AccordionDetails, AccordionSummary, IconButton } from '@mui/material'
+import { ArrowDropDownRounded, KeyboardArrowDownRounded } from '@mui/icons-material'
 
 const Entrants = ({ dict }) => {
+  const [prioretyDate, setPrioretyDate] = useState([])
+  const [specializations, setSpecializations] = useState([])
+  const [faq, setFaqs] = useState([])
 
   const { lang } = useParams()
 
-  const [prioretyDate, setPrioretyDate] = useState([])
-  console.log('prioretyDate: ', prioretyDate);
+  const admissionProcedures = [
+    {
+      image: '/education-route-icon.svg',
+      title: dict?.entrants?.admissionProcedures?.blockOne?.title,
+      description: dict?.entrants?.admissionProcedures?.blockOne?.description,
+    },
+
+    {
+      image: '/education-route-icon.svg',
+      title: dict?.entrants?.admissionProcedures?.blockTwo?.title,
+      description: dict?.entrants?.admissionProcedures?.blockTwo?.description,
+    },
+
+    {
+      image: '/education-route-icon.svg',
+      title: dict?.entrants?.admissionProcedures?.blockThree?.title,
+      description: dict?.entrants?.admissionProcedures?.blockThree?.description,
+    },
+
+    {
+      image: '/education-route-icon.svg',
+      title: dict?.entrants?.admissionProcedures?.blockFour?.title,
+      description: dict?.entrants?.admissionProcedures?.blockFour?.description,
+    },
+
+    {
+      image: '/education-route-icon.svg',
+      title: dict?.entrants?.admissionProcedures?.blockFive?.title,
+      description: dict?.entrants?.admissionProcedures?.blockFive?.description,
+    },
+
+    {
+      image: '/education-route-icon.svg',
+      title: dict?.entrants?.admissionProcedures?.blockSix?.title,
+      description: dict?.entrants?.admissionProcedures?.blockSix?.description,
+    },
+  ]
 
   const handleGetPrioretyDates = useCallback(async () => {
     const response = await API.get('education/admission-dates')
@@ -19,9 +68,23 @@ const Entrants = ({ dict }) => {
     setPrioretyDate(data)
   }, [])
 
+  const handleGetSpecializations = useCallback(async () => {
+    const response = await API.get('education/specialtie')
+    const data = response.data.results;
+    setSpecializations(data)
+  }, [])
+
+  const handleGetFaqs = useCallback(async () => {
+    const response = await API.get('abouts/faq')
+    const data = response.data.results;
+    setFaqs(data)
+  }, [])
+
   useEffect(() => {
     handleGetPrioretyDates()
-  }, [handleGetPrioretyDates])
+    handleGetSpecializations()
+    handleGetFaqs()
+  }, [handleGetPrioretyDates, handleGetSpecializations, handleGetFaqs])
 
   return (
     <div className='w-full flex flex-col items-center'>
@@ -30,15 +93,89 @@ const Entrants = ({ dict }) => {
         <div className='w-full flex flex-col justify-between gap-[30px]   text-center'>
           <p className='font-[800] text-[#000] text-[34px] md:text-[20px] sm:text-[18px]'>{dict?.entrants?.dateReception?.title}</p>
 
-          <div className='w-full flex justify-evenly items-center flex-wrap'>
+          <div className='w-full flex justify-evenly items-center gap-4 flex-wrap'>
             {prioretyDate?.map((data, index) => (
               <PrioretyEntrantsDate data={data} key={index} />
             ))}
           </div>
+
+          <div className="w-full flex flex-col py-[50px] md:py-[30px] sm:py-4 gap-10 md:gap-6 sm:gap-3">
+            <p className='font-[800] text-[#000] text-[34px] md:text-[20px] sm:text-[18px]'>{dict?.entrants?.admissionProcedures?.title}</p>
+
+            <div className='px-[100px] md:px-[40px] sm:px-4 flex w-full justify-between items-center flex-wrap gap-10'>
+              {
+                admissionProcedures?.map((item, index) => (
+                  <InfoMiniBox className='block' item={item} index={index} key={index} />
+                ))
+              }
+            </div>
+          </div>
+
+          {specializations && specializations?.length > 0 && (
+            <div className='w-full flex gap-5 flex-col justify-between items-center'>
+              <p className='font-[800] text-[#000] text-[34px] md:text-[20px] sm:text-[18px]'>{dict?.entrants?.specializations?.title}</p>
+
+              <div className='w-full flex justify-center items-center'>
+                {/* <Swiper
+                  loop
+                  pagination={{
+                    clickable: true,
+                  }}
+                  spaceBetween={30}
+                  modules={[Navigation]}
+                  className="gallary-swiper"
+                > */}
+                {specializations?.map((route, index) => (
+                  <Specialization dict={dict} route={route} />
+                ))}
+              </div>
+            </div>
+          )}
+
+          <div className='w-full flex md:flex-wrap sm:flex-wrap sm:gap-4 justify-between py-[100px] md:py-[40px] sm:py-6'>
+            <div className='w-1/2 md:w-full sm:w-full flex flex-col justify-start gap-[50px]'>
+              <p className='font-[800] text-[45px] md:text-[30px] sm:text-[20px] text-[#042442] max-w-1/2'>{dict?.entrants?.faq?.title}</p>
+
+              <div className='w-full flex flex-col gap-[25px]'>
+                {faq?.map((quest, index) => (
+                  <Accordion
+                    square='false'
+                    sx={{ borderRadius: '40px' }}
+                    key={index}
+                    className='faq-block bg-white p-[10px]'
+
+                  >
+                    <AccordionSummary
+                      expandIcon={<KeyboardArrowDownRounded />}
+                      sx={{
+                        borderBottom: '1px solid transparent',
+                        '&.Mui-expanded': {
+                          borderBottom: '1px solid transparent',
+                        },
+                      }}
+                    >
+                      <p className='font-[700] text-[16px] text-[#042442]'>
+                        {quest?.[`question_${lang}`]}
+                      </p>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                      <div className='w-full flex justify-start items-center'>
+                        <span className='tracking-[1px] font-[600] whitespace-normal break-words max-w-full text-[14px] text-[#042442]'>
+                          {quest?.[`answer_${lang}`]}
+                        </span>
+                      </div>
+                    </AccordionDetails>
+                  </Accordion>
+                ))}
+              </div>
+            </div>
+            <img src='/faq-preview.svg' className='w-1/2 md:w-full sm:w-full h-full' />
+          </div>
         </div>
       </div>
-    </div>
+    </div >
   )
 }
 
 export default Entrants
+

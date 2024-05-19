@@ -13,7 +13,6 @@ import { API } from '@/requester';
 
 const MainNewsBlock = ({ dict, news }) => {
   const { lang } = useParams();
-
   const router = useRouter();
 
   return (

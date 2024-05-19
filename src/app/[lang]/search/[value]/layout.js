@@ -1,8 +1,8 @@
 const faviconUrl = '/favicon.ico';
 
 export const metadata = {
-  title: 'КНАУ | Абитуриенты',
-  description: 'Страница для абитуриентов и будущих студентов КНАУ',
+  title: 'КНАУ | Поиск по сайту',
+  description: 'Поиск по сайту',
   icons: faviconUrl,
 };
 

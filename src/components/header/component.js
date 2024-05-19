@@ -13,7 +13,7 @@ const Header = () => {
   const [dict, setDict] = useState('ru');
   const [modalHeader, setModalHeader] = useState(false);
 
-  const { lang } = useParams()
+  const { lang, value } = useParams()
   const path = usePathname();
   const router = useRouter();
   const theme = useTheme();
@@ -37,7 +37,7 @@ const Header = () => {
     }
   }
 
-  if (path === `/${lang}/blog-and-news`) {
+  if (path === `/${lang}/news`) {
     (headerImage = `/blog-and-news-preview.png`),
       (headerTitle = dict?.header?.previews?.titles?.blogAndNews),
       (headerDescription = dict?.header?.previews?.descriptions?.blogAndNews)
@@ -89,6 +89,12 @@ const Header = () => {
     (headerImage = `/additional-education-preview.png`),
       (headerTitle = dict?.header?.previews?.titles?.additionalEducation),
       (headerDescription = dict?.header?.previews?.descriptions?.additionalEducation)
+  }
+
+  if (path === `/${lang}/search/${value}`) {
+    (headerImage = `/additional-education-preview.png`),
+      (headerTitle = dict?.header?.previews?.titles?.searchResult),
+      (headerDescription = dict?.header?.previews?.descriptions?.searchResult)
   }
 
   const headerList = [
@@ -217,7 +223,7 @@ const Header = () => {
 
       <div className='w-full sm:flex sm:justify-between sm:px-[20px]'>
         <div className='w-full flex max-w-[1440px] gap-[10px] items-center px-[80px] sm:px-[0px] py-[22px]'>
-          <img onClick={() => router.push(`/${lang}/`)} src='/big-logo.svg' className='w-[100px] h-[100px] md:w-[70px] md:h-[70px] sm:w-[45.71px] sm:h-[45.71px]' />
+          <img onClick={() => router.push(`/${lang}/`)} src='/big-logo.svg' className='w-[100px] h-[100px] md:w-[70px] md:h-[70px] sm:w-[45.71px] sm:h-[45.71px] hover:cursor-pointer' />
           <span className='text-[20px] md:text-[18px] sm:text-[9.14px] text-[#000] font-[600]' dangerouslySetInnerHTML={{ __html: dict?.header?.slogan }}></span>
         </div>
 
@@ -233,27 +239,20 @@ const Header = () => {
       </div>
 
       <div
-        style={{
-          backgroundImage: `url(${headerImage})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          position: 'relative',
-          zIndex: '90',
-        }}
-        className={`${path === `/${lang}/site-map` || path === `/${lang}/contacts` ? 'hidden' : 'flex'} sm:w-full sm:h-[300px] md:w-full md:h-[320px] w-full h-[460px] overflow-y-hidden sm:p-5 md:p-10 p-[100px] flex flex-col gap-[2.5px] justify-start sm:pt-[30px] md:pt-[75px] pt-[91px] items-start`}>
-
-        <img
-          src={headerShadow}
-          alt="Shadow"
+        className={`${path === `/${lang}/site-map` || path === `/${lang}/contacts` ? 'hidden' : 'flex'} header sm:w-full sm:h-[300px] md:w-full md:h-[320px] w-full h-[460px] overflow-y-hidden sm:p-5 md:p-10 p-[100px] flex flex-col gap-[2.5px] justify-start sm:pt-[30px] md:pt-[75px] pt-[91px] items-start relative`}
+      >
+        <div
+          className="bg-cover bg-center bg-no-repeat rounded-lg shadow-xl"
           style={{
+            backgroundImage: `url(${headerImage})`,
             position: 'absolute',
-            bottom: '0',
-            left: '0',
-            width: '100%',
-            height: '100%',
+            zIndex: '-1',
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0,
           }}
-        />
+        ></div>
 
         <p className='font-montserratBlack opacity-[100] font-black text-[#ffffff] sm:text-[28px] md:text-[37px] text-[48px]'>{headerTitle}</p>
 
@@ -263,6 +262,7 @@ const Header = () => {
           {headerDescription}
         </span>
       </div>
+
 
       <ModalHeader
         dict={dict}

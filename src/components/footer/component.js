@@ -18,20 +18,20 @@ const Footer = () => {
 
   const footerListOne = [
     {
-      name: dict?.footer?.list?.blogAndNewsFeed, link: `/${lang}/blog-and-news`
+      name: dict?.footer?.list?.blogAndNewsFeed, link: `/${lang}/news`
     },
     { name: dict?.footer?.list?.additionalEducation, link: `/${lang}/additional-education` },
-    { name: dict?.footer?.list?.educationalActivity, link: `/${lang}/` },
-    { name: dict?.footer?.list?.multimedia, link: `/${lang}/` },
-    { name: dict?.footer?.list?.informationForStudents, link: `/${lang}/` },
-    { name: dict?.footer?.list?.contactInformation, link: `/${lang}/` },
+    { name: dict?.footer?.list?.educationalActivity, link: `/${lang}/education-activity` },
+    { name: dict?.footer?.list?.multimedia, link: `/${lang}/gallary` },
+    { name: dict?.footer?.list?.informationForStudents, link: `/${lang}/education-activity` },
+    { name: dict?.footer?.list?.contactInformation, link: `/${lang}/contacts` },
   ]
 
   const footerListTwo = [
-    { name: dict?.footer?.list?.informationForTeachers, link: `/${lang}/about-teachers` },
+    { name: dict?.footer?.list?.informationForTeachers, link: `/${lang}/teachers` },
     { name: dict?.footer?.list?.aboutTeachers, link: `/${lang}/about-teachers` },
-    { name: dict?.footer?.list?.toApplicants, link: `/${lang}/` },
-    { name: dict?.footer?.list?.electronicLibrary, link: `/${lang}/` },
+    { name: dict?.footer?.list?.toApplicants, link: `/${lang}/entrants` },
+    { name: dict?.footer?.list?.electronicLibrary, link: `/${lang}/gallary` },
     { name: dict?.footer?.list?.internationalCooperation, link: `/${lang}/` },
     { name: dict?.footer?.list?.siteMap, link: `/${lang}/site-map` },
   ]

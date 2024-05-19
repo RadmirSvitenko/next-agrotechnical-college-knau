@@ -27,9 +27,10 @@ const Contacts = ({ dict }) => {
   } = useForm();
 
   const onSubmit = useCallback(async (d) => {
-    const response = await API.post('feedback/', d);
+    const response = await API.post('abouts/sending', { name: d.name, email: d.email, info_text: d.info_text });
     await response.data;
   }, []);
+
 
   return (
     <div className='w-full h-auto min-h-screen flex flex-col gap-4 pt-[61px] flex-wrap'>
@@ -55,26 +56,6 @@ const Contacts = ({ dict }) => {
               </div>
             </div>
           ))}
-
-
-          {/* <div className='flex flex-col'>
-            <div className='flex flex-col pb-4'>
-              <p className='text-[22px] text-[#0079C1] font-[600]'>{dict?.contacts?.president}</p>
-
-              <span className='text-[16px] text-[#292C3D] font-[400]'>{dict?.contacts?.presidentData}</span>
-            </div>
-
-            <div className='flex gap-3 items-center'>
-              <img src='/contacts-icon-phone.svg' alt='phone' />
-              <p>+996555555555</p>
-            </div>
-
-            <div className='flex gap-3 items-center'>
-              <img src='/contacts-icon-mail.svg' alt='mail' />
-              <a href='#' className='underline'>inbox@mail.ru</a>
-            </div>
-          </div>
-        </div> */}
 
           <div className='bg-[#F1F2F4] px-[80px] flex pt-10 md:px-4 sm:px-0 md:w-full sm:w-full'>
             <div className='flex flex-col'>
@@ -130,7 +111,7 @@ const Contacts = ({ dict }) => {
             }
           >
             <form
-              // onSubmit={handleSubmit(onSubmit)}
+              onSubmit={handleSubmit(onSubmit)}
               className={
                 'max-w-[1440px] mx-auto sm:w-full z-20 w-[595px] h-auto pt-[40px] px-[32px] pb-[43px] my-[30px] flex flex-col gap-5 rounded-[10px] bg-white sm:py-[40px] sm:px-[21px] sm:pb-[23px] sm:gap-5'
               }
