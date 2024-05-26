@@ -1,0 +1,19 @@
+.swiper {
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+}
+
+.programms {
+  height: 100%;
+  width: 100%;
+}
+
+.break-words {
+  word-wrap: break-word;
+}

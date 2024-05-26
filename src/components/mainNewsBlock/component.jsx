@@ -9,7 +9,6 @@ import './styles.css';
 
 import { Navigation } from 'swiper/modules';
 import { useParams, useRouter } from 'next/navigation';
-import { API } from '@/requester';
 
 const MainNewsBlock = ({ dict, news }) => {
   const { lang } = useParams();
@@ -19,7 +18,7 @@ const MainNewsBlock = ({ dict, news }) => {
     <div>
       {/* Mobile */}
       <div className="sm:p-[18px] relative sm:flex hidden sm:flex-col   sm:w-full">
-        <p className="text-[#000] text-[32px] pt-[18px] pb-[13px] font-[800]">
+        <p className="text-[#000] w-full text-[32px] pt-[18px] pb-[13px] font-[800]">
           {dict?.mainPage?.mainNews?.title}
         </p>
 
@@ -40,10 +39,10 @@ const MainNewsBlock = ({ dict, news }) => {
                     className="w-[203px] h-[190px]"
                   />
 
-                  <span className="font-[600] text-[11px] text-[#000]">
-                    {event?.date}
+                  <span className="font-[600] truncate w-full text-[11px] text-[#000]">
+                    {String(event?.date)?.slice(0, 10)}
                   </span>
-                  <p className="font-[700] text-[25px] text-[#000]">
+                  <p className="font-[700] block text-[20px] text-[#000]">
                     {event?.[`title_${lang}`]}
                   </p>
                   <span className="block overflow-hidden text-[10px] font-[400] text-[#000] w-full max-h-12 leading-3 truncate">
@@ -100,7 +99,7 @@ const MainNewsBlock = ({ dict, news }) => {
                 />
                 <div className="bg-[#0072BC] flex flex-col p-8 justify-evenly items-start text-[#fff] w-full h-[65%]">
                   <p className="font-[900] text-[#FFFFFF] md:text-[9px] text-[11px]">
-                    {event?.date}
+                    {String(event?.date)?.slice(0, 10)}
                   </p>
                   <p
                     onClick={() => router.push(`${lang}/news/${event?.id}`)}
@@ -141,7 +140,7 @@ const MainNewsBlock = ({ dict, news }) => {
                     />
                     <div className="flex p-4 w-full h-1/2 gap-3 flex-col justify-evenly">
                       <p className="font-[900] text-[#838383] md:text-[9px] text-[11px]">
-                        {event?.date}
+                        {String(event?.date)?.slice(0, 10)}
                       </p>
                       <span
                         onClick={() => router.push(`${lang}/news/${event?.id}`)}

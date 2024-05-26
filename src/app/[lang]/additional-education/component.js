@@ -1,17 +1,27 @@
+"use client"
+
 import CoursesAndPrograms from '@/components/coursesAndProgramms/component'
 import { Pagination } from '@mui/material'
-import React from 'react'
-// import { Swiper, SwiperSlide } from 'swiper/react';
+import React, { useCallback, useEffect, useState } from 'react'
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 
 import './styles.css';
 
-import { Navigation } from 'swiper/modules';
 import AdditionalEducationAdvantages from '@/components/additionalEducationAdvantages/component';
+import { API } from '@/requester';
 
 const AdditionalEducation = ({ dict }) => {
+
+  const [courses, setCourses] = useState([])
+
+  const handleGetCourses = useCallback(async () => {
+    const response = await API.get('education/courses-programms')
+    const data = await response.data.results
+    setCourses(data)
+  }, [])
+
 
   const allCourses = [
     {
@@ -62,20 +72,9 @@ const AdditionalEducation = ({ dict }) => {
     }
   ]
 
-  const classSchedule = [
-    {
-      title: "Физика",
-      file: "/"
-    },
-    {
-      title: "Химия",
-      file: "/"
-    },
-    {
-      title: "Биология",
-      file: "/"
-    }
-  ]
+  useEffect(() => {
+    handleGetCourses()
+  }, [handleGetCourses])
 
   return (
     <div className='w-full flex flex-col h-auto min-h-screen max-w-[1440px] py-[50px] px-[80px] md:px-[40px] sm:px-4 bg-[#F1F3F4]'>
@@ -83,7 +82,7 @@ const AdditionalEducation = ({ dict }) => {
         <p className='text-[#000000] text-[34px] md:text-[28px] sm:text-[22px] font-[800] text-center'>{dict?.additionalEducation?.coursesAndPrograms?.title}</p>
 
         <div className='w-full gap-4 md:gap-7 sm:gap-10 flex flex-wrap py-[50px] justify-evenly items-center'>
-          {allCourses?.map((course, index) => (
+          {courses?.map((course, index) => (
             <CoursesAndPrograms course={course} dict={dict} key={index} />
           ))}
         </div>

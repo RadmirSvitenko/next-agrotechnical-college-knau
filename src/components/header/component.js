@@ -10,6 +10,7 @@ import './styles.css'
 
 const Header = () => {
   const [language, setLanguage] = useState('ru');
+  const [searchValue, setSearchValue] = useState('');
   const [dict, setDict] = useState('ru');
   const [modalHeader, setModalHeader] = useState(false);
 
@@ -19,7 +20,6 @@ const Header = () => {
   const theme = useTheme();
   const isSmScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
-  const headerShadow = '/header-shadow.png'
   let headerImage;
   let headerTitle;
   let headerDescription;
@@ -97,6 +97,12 @@ const Header = () => {
       (headerDescription = dict?.header?.previews?.descriptions?.searchResult)
   }
 
+  if (path === `/${lang}/international-cooperation`) {
+    (headerImage = `/additional-education-preview.png`),
+      (headerTitle = dict?.header?.previews?.titles?.internationalCooperation),
+      (headerDescription = dict?.header?.previews?.descriptions?.internationalCooperation)
+  }
+
   const headerList = [
     {
       title: dict?.header?.list?.news,
@@ -144,10 +150,21 @@ const Header = () => {
     setModalHeader(value);
   };
 
+  const handleChangeValue = (e) => {
+    setSearchValue(e.target.value);
+  };
+
   const handleChangeLanguage = (value) => {
     setLanguage(value);
     getDictionary(language);
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (searchValue !== '' && searchValue !== 'undefined') {
+      router.push(`/${lang}/search/${searchValue}`)
+    }
+  }
 
   useEffect(() => {
     handleGetLanguage();
@@ -173,8 +190,8 @@ const Header = () => {
 
           <div className='flex gap-3 items-center'>
             <form
-            // onSubmit={handleSubmit}
-            // onChange={handleChangeValue}
+              onSubmit={handleSubmit}
+              onChange={handleChangeValue}
             >
               <TextField
                 sx={{
@@ -242,7 +259,7 @@ const Header = () => {
         className={`${path === `/${lang}/site-map` || path === `/${lang}/contacts` ? 'hidden' : 'flex'} header sm:w-full sm:h-[300px] md:w-full md:h-[320px] w-full h-[460px] overflow-y-hidden sm:p-5 md:p-10 p-[100px] flex flex-col gap-[2.5px] justify-start sm:pt-[30px] md:pt-[75px] pt-[91px] items-start relative`}
       >
         <div
-          className="bg-cover bg-center bg-no-repeat rounded-lg shadow-xl"
+          className="bg-cover bg-center bg-no-repeat  shadow-xl"
           style={{
             backgroundImage: `url(${headerImage})`,
             position: 'absolute',

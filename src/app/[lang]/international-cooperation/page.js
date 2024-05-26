@@ -1,10 +1,10 @@
 import React from 'react'
 import { getDictionary } from '../dictionaries'
-import Gallary from './component'
+import InternatonalCooperation from './component'
 
 const Page = async ({ params: { lang } }) => {
   const dict = await getDictionary(lang)
-  return <Gallary dict={dict} />
+  return <InternatonalCooperation dict={dict} />
 }
 
 export default Page

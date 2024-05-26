@@ -140,9 +140,9 @@ const Entrants = ({ dict }) => {
                 {faq?.map((quest, index) => (
                   <Accordion
                     square='false'
-                    sx={{ borderRadius: '40px' }}
+                    sx={{ borderRadius: '40px', border: "none", }}
                     key={index}
-                    className='faq-block bg-white p-[10px]'
+                    className='faq-block bg-white p-[10px] accordion'
 
                   >
                     <AccordionSummary
@@ -153,12 +153,13 @@ const Entrants = ({ dict }) => {
                           borderBottom: '1px solid transparent',
                         },
                       }}
+                      className='accordion'
                     >
                       <p className='font-[700] text-[16px] text-[#042442]'>
                         {quest?.[`question_${lang}`]}
                       </p>
                     </AccordionSummary>
-                    <AccordionDetails>
+                    <AccordionDetails className='accordion'>
                       <div className='w-full flex justify-start items-center'>
                         <span className='tracking-[1px] font-[600] whitespace-normal break-words max-w-full text-[14px] text-[#042442]'>
                           {quest?.[`answer_${lang}`]}

@@ -32,7 +32,7 @@ const Footer = () => {
     { name: dict?.footer?.list?.aboutTeachers, link: `/${lang}/about-teachers` },
     { name: dict?.footer?.list?.toApplicants, link: `/${lang}/entrants` },
     { name: dict?.footer?.list?.electronicLibrary, link: `/${lang}/gallary` },
-    { name: dict?.footer?.list?.internationalCooperation, link: `/${lang}/` },
+    { name: dict?.footer?.list?.internationalCooperation, link: `/${lang}/international-cooperation` },
     { name: dict?.footer?.list?.siteMap, link: `/${lang}/site-map` },
   ]
 

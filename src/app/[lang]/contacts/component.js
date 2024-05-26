@@ -2,6 +2,7 @@
 
 import Map from '@/components/map/component'
 import { API } from '@/requester';
+import axios from 'axios';
 import { useParams } from 'next/navigation';
 import React, { useCallback, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
@@ -27,7 +28,7 @@ const Contacts = ({ dict }) => {
   } = useForm();
 
   const onSubmit = useCallback(async (d) => {
-    const response = await API.post('abouts/sending', { name: d.name, email: d.email, info_text: d.info_text });
+    const response = await axios.post(`https://asanabdi.pythonanywhere.com/${lang}/api/v1/abouts/sending/`, { name: d.name, email: d.email, info_text: d.info_text });
     await response.data;
   }, []);
 

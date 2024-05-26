@@ -3,49 +3,43 @@
 import BlogAndNewsCard from '@/components/blogAndNewsCard/component'
 import { ArrowForwardIos } from '@mui/icons-material'
 import { Pagination } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import './styles.css'
+import { useParams } from 'next/navigation'
+import { API } from '@/requester'
 
 const BlogAndNews = ({ dict }) => {
   const [animDoc, setAnimDoc] = useState(0)
+  const [news, setNews] = useState([]);
 
-  const testNews = [
-    {
-      image: "/blog-and-news-preview.png",
-      title: "news1",
-      description: "news desc1news desc1news desc1news desc1news desc1news desc1news desc1"
-    },
+  const [newsProps, setNewsProps] = useState({
+    search: '',
+    page: 1,
+    pageSize: 3,
+    order: 1,
+    count: 0,
+  });
 
-    {
-      image: "/blog-and-news-preview.png",
-      title: "news2",
-      description: "news desc2news desc1news desc1"
-    },
+  const { lang } = useParams()
 
-    {
-      image: "/blog-and-news-preview.png",
-      title: "news3",
-      description: "Далеко далеко Далеко далеко Далеко далеко Далеко далеко Далеко далеко Далеко далеко Далеко далеко Далеко далеко Далеко далеко Далеко далеко Далеко далеко Далеко далеко Далеко далеко Далеко далеко Далеко далеко Далеко далеко Далеко далеко Далеко далеко Далеко далеко Далеко далеко Далеко далеко "
-    },
+  const handleGetNews = useCallback(async () => {
+    const response = await API.get(`news/news?limit=${newsProps.pageSize}&offset=${newsProps.page}`);
+    const data = await response.data.results;
+    const countPage = response.data.count;
+    setNews(data);
+    setNewsProps((prevValue) => ({ ...prevValue, count: countPage }));
+  }, [lang, newsProps.page]);
 
-    {
-      image: "/blog-and-news-preview.png",
-      title: "news4",
-      description: "news desc4"
-    },
+  const handleChangePage = (e, page) => {
+    setNewsProps((prevValue) => ({
+      ...prevValue,
+      page: page,
+    }));
+  };
 
-    {
-      image: "/blog-and-news-preview.png",
-      title: "news5",
-      description: "news desc5"
-    },
-
-    {
-      image: "/blog-and-news-preview.png",
-      title: "news6",
-      description: "news desc6"
-    }
-  ]
+  useEffect(() => {
+    handleGetNews();
+  }, [handleGetNews]);
 
 
   const testEvents = [
@@ -126,7 +120,7 @@ const BlogAndNews = ({ dict }) => {
           <img src='/all-news-title-icon.svg' alt='Все новости' className='w-[72px] h-[72px]' />
           <p className='font-[900] text-[47px] md:text-[30px] sm:text-[22px] text-[#000000]'>{dict?.blogAndNews?.titles?.allNews}</p></div>
 
-        <div className='flex justify-between md:justify-center sm:justify-center items-center gap-[34px] pb-[34px] flex-wrap pt-[53px]'>{testNews?.map((event, index) => (
+        <div className='flex justify-evenly md:justify-center sm:justify-center items-center gap-[34px] pb-[34px] flex-wrap pt-[53px]'>{news?.map((event, index) => (
           <BlogAndNewsCard event={event} key={index} />
         ))}</div>
 
@@ -136,11 +130,9 @@ const BlogAndNews = ({ dict }) => {
           <Pagination
             variant="outlined"
             shape="rounded"
-            // onChange={handleChangePage}
-            // page={tendersProps.page}
-            page={1}
-            // count={Math.ceil(tendersProps.count / tendersProps.pageSize) || 1}
-            count={5}
+            onChange={handleChangePage}
+            page={newsProps?.page}
+            count={Math.ceil(newsProps.count / newsProps.pageSize) || 1}
             showFirstButton
             showLastButton
             siblingCount={2}
@@ -166,8 +158,8 @@ const BlogAndNews = ({ dict }) => {
             >
 
               <div className={`h-[200px] overflow-y-hidden transform transition-transform duration-300 ease-in-out ${animDoc !== doc?.title ? 'rotate-270' : ''} gap-[9px]`}>
-                <p className='font-[700] text-[33px] text-[#fff]'>{doc?.title}</p>
-                <span className='font-[700] text-[16px] text-[#fff]'>{doc?.description}</span>
+                <p className='font-[700] text-[33px] text-[#fff]'>{doc?.[`title_${lang}`]}</p>
+                <span className='font-[700] text-[16px] text-[#fff]'>{doc?.[`description${lang}`]}</span>
                 <span className="flex gap-3 pt-[60px] cursor-pointer items-center font-[700] text-[14px] sm:text-[10px] tracking-[1.5px] text-[#ffffff]">
                   {dict?.blogAndNews?.titles?.aboutButton}
                   <ArrowForwardIos sx={{ fontSize: '14px' }} />
@@ -177,7 +169,7 @@ const BlogAndNews = ({ dict }) => {
           ))}
         </div>
 
-        <div
+        {/* <div
           className={'w-full flex justify-center items-center py-6'}
         >
           <Pagination
@@ -192,7 +184,7 @@ const BlogAndNews = ({ dict }) => {
             showLastButton
             siblingCount={2}
           />
-        </div>
+        </div> */}
       </div>
 
       <div className='flex pt-[55px] pb-[69px] justify-between lg:px-[100px] md:px-7 sm:px-4 px-[130px] md:w-full sm:w-full md:flex-wrap sm:flex-wrap'>
