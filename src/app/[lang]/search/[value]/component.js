@@ -55,8 +55,7 @@ const SearchResult = ({ dict }) => {
                   }
                 >
                   <img
-                    // src={event?.image}
-                    src='https://img.freepik.com/free-photo/fresh-yellow-daisy-single-flower-close-up-beauty-generated-by-ai_188544-15543.jpg'
+                    src={event?.image}
                     alt={event?.[`title_${lang}`]}
                     className={'w-[370px] h-[220px] hover:cursor-pointer rounded-xl'}
                   />
@@ -116,8 +115,7 @@ const SearchResult = ({ dict }) => {
                     }
                   >
                     <img
-                      // src={media?.image}
-                      src='https://img.freepik.com/free-photo/fresh-yellow-daisy-single-flower-close-up-beauty-generated-by-ai_188544-15543.jpg'
+                      src={media?.image}
                       alt={media?.[`title_${lang}`]}
                       className={'w-[370px] h-[220px] hover:cursor-pointer rounded-xl'}
                     />
@@ -136,6 +134,8 @@ const SearchResult = ({ dict }) => {
           </div>
         </div>
       )}
+
+      {/* Курсы и программы */}
 
       {searchValue && searchValue?.courses_and_programms && searchValue?.courses_and_programms.length > 0 && (
         <div

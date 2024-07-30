@@ -1,9 +1,10 @@
 'use client';
 
+import { ArrowForwardIos } from '@mui/icons-material';
 import { useParams } from 'next/navigation';
 import React from 'react';
 
-const BlogAndNewsCard = ({ event }) => {
+const BlogAndNewsCard = ({ event, dict }) => {
   const { lang } = useParams();
 
   return (
@@ -13,11 +14,15 @@ const BlogAndNewsCard = ({ event }) => {
         alt={event?.[`title_${lang}`]}
         className="w-full min-h-[158px] h-[158px]"
       />
-      <p className="font-[900] overflow-ellipsis text-[22px] text-[#000]">
+      <p className="font-[900] overflow-ellipsis truncate text-[22px] text-[#000]">
         {event?.[`title_${lang}`]}
       </p>
-      <p className="font-[700] overflow-ellipsis text-[16px] leading-[22px] text-[##B4B4B4]">
+      <span className="font-[700] overflow-ellipsis truncate text-[16px] leading-[22px] text-[##B4B4B4]">
         {event?.[`description_${lang}`]}
+      </span>
+
+      <p className="cursor-pointer pt-4 items-center font-[700] text-[14px] sm:text-[10px] tracking-[1.5px] text-[#000]">
+        {dict?.blogAndNews?.titles?.aboutButton}
       </p>
     </div>
   );

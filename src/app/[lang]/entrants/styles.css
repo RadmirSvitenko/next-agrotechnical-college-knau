@@ -6,3 +6,7 @@
   border: none;
   outline: none;
 }
+
+.css-h9vto1-MuiPaper-root-MuiAccordion-root::before {
+  display: none;
+}

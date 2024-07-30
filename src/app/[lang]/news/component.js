@@ -1,7 +1,6 @@
 "use client"
 
 import BlogAndNewsCard from '@/components/blogAndNewsCard/component'
-import { ArrowForwardIos } from '@mui/icons-material'
 import { Pagination } from '@mui/material'
 import React, { useCallback, useEffect, useState } from 'react'
 import './styles.css'
@@ -23,7 +22,7 @@ const BlogAndNews = ({ dict }) => {
   const { lang } = useParams()
 
   const handleGetNews = useCallback(async () => {
-    const response = await API.get(`news/news?limit=${newsProps.pageSize}&offset=${newsProps.page}`);
+    const response = await API.get(`news/news?page=${newsProps.page}`);
     const data = await response.data.results;
     const countPage = response.data.count;
     setNews(data);
@@ -117,11 +116,11 @@ const BlogAndNews = ({ dict }) => {
     <div className='flex flex-col'>
       <div className='pt-[81px] px-[150px] md:px-[70px] sm:px-4 flex flex-col'>
         <div className='flex w-full gap-3 items-center'>
-          <img src='/all-news-title-icon.svg' alt='Все новости' className='w-[72px] h-[72px]' />
+          <img src='/all-news-title-icon.svg' alt={dict?.blogAndNews?.titles?.allNews} className='w-[72px] h-[72px]' />
           <p className='font-[900] text-[47px] md:text-[30px] sm:text-[22px] text-[#000000]'>{dict?.blogAndNews?.titles?.allNews}</p></div>
 
         <div className='flex justify-evenly md:justify-center sm:justify-center items-center gap-[34px] pb-[34px] flex-wrap pt-[53px]'>{news?.map((event, index) => (
-          <BlogAndNewsCard event={event} key={index} />
+          <BlogAndNewsCard event={event} dict={dict} key={index} />
         ))}</div>
 
         <div
@@ -156,14 +155,14 @@ const BlogAndNews = ({ dict }) => {
               }}
               className={`${animDoc === index ? 'w-[40%]' : 'w-[20%]'} p-[22px] justify-end sm:w-full md:w-full h-[650px] relative flex flex-col  `}
             >
-
-              <div className={`h-[200px] overflow-y-hidden transform transition-transform duration-300 ease-in-out ${animDoc !== doc?.title ? 'rotate-270' : ''} gap-[9px]`}>
+              {/* ${animDoc !== doc?.title ? 'rotate-270' : ''} */}
+              <div className='h-[200px]  overflow-y-hidden transform transition-transform duration-300 ease-in-out gap-[9px]'>
                 <p className='font-[700] text-[33px] text-[#fff]'>{doc?.[`title_${lang}`]}</p>
                 <span className='font-[700] text-[16px] text-[#fff]'>{doc?.[`description${lang}`]}</span>
-                <span className="flex gap-3 pt-[60px] cursor-pointer items-center font-[700] text-[14px] sm:text-[10px] tracking-[1.5px] text-[#ffffff]">
+                {/* <span className="flex gap-3 pt-[60px] cursor-pointer items-center font-[700] text-[14px] sm:text-[10px] tracking-[1.5px] text-[#ffffff]">
                   {dict?.blogAndNews?.titles?.aboutButton}
                   <ArrowForwardIos sx={{ fontSize: '14px' }} />
-                </span>
+                </span> */}
               </div>
             </div>
           ))}

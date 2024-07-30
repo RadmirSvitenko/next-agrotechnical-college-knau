@@ -73,7 +73,7 @@ const Teachers = ({ dict }) => {
       <div className='flex flex-col justify-between gap-[15px]'>
         <p className='font-[800] text-[34px] text-[#000] text-center'>{dict?.teachers?.title}</p>
 
-        <div className='flex gap-[15px]  justify-between w-full overflow-x-scroll'>
+        <div className='flex gap-[15px] py-8 justify-between w-full overflow-x-scroll'>
           {learningList?.map((predmet, index) => (
             <div key={index} className='flex flex-col relative justify-evenly shadow-xl'>
               <div className={`w-[335px] min-h-[310px] h-auto p-[25px] flex flex-col justify-between items-center rounded-[5px] shadow-lg`}
@@ -95,7 +95,7 @@ const Teachers = ({ dict }) => {
           ))}
         </div>
 
-        <div
+        {/* <div
           className={'w-full flex justify-center items-center py-8'}
         >
           <Pagination
@@ -110,7 +110,7 @@ const Teachers = ({ dict }) => {
             showLastButton
             siblingCount={2}
           />
-        </div>
+        </div> */}
 
         <div className='pt-[53px] pb-[55px]'>
           <div className='flex flex-wrap xl:gap-0 gap-7 justify-start w-full min-h-[450px]'>
