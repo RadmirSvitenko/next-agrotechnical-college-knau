@@ -194,6 +194,7 @@ const Header = () => {
               onChange={handleChangeValue}
             >
               <TextField
+                className='placeholder'
                 sx={{
                   // display: isSmScreen ? "none" : "inline-block",
                   '& .MuiInputBase-root': {
@@ -271,13 +272,14 @@ const Header = () => {
           }}
         ></div>
 
-        <p className='font-montserratBlack opacity-[100] font-black text-[#ffffff] sm:text-[28px] md:text-[37px] text-[48px]'>{headerTitle}</p>
+        <p className='font-montserratTitle opacity-[100] font-black text-[#ffffff] sm:text-[28px] md:text-[37px] text-[48px]'>
+          {headerTitle}
+        </p>
 
-        <span
-          className='font-montserratBlack font-[400] text-[#ffffff] text-[14px]'
-        >
+        <span className='font-montserratTitle font-[400] text-[#ffffff] text-[14px]'>
           {headerDescription}
         </span>
+
       </div>
 
 

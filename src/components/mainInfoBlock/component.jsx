@@ -103,7 +103,7 @@ const MainInfoBlock = ({ dict }) => {
         </div>
       </div>
 
-      <div
+      {/* <div
         className="w-full h-[626px]"
         style={{
           backgroundImage: "url('/main-info-image-bg.png')",
@@ -111,7 +111,7 @@ const MainInfoBlock = ({ dict }) => {
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center',
         }}
-      />
+      /> */}
     </div>
   );
 };

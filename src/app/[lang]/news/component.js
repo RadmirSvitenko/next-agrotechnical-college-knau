@@ -117,7 +117,7 @@ const BlogAndNews = ({ dict }) => {
       <div className='pt-[81px] px-[150px] md:px-[70px] sm:px-4 flex flex-col'>
         <div className='flex w-full gap-3 items-center'>
           <img src='/all-news-title-icon.svg' alt={dict?.blogAndNews?.titles?.allNews} className='w-[72px] h-[72px]' />
-          <p className='font-[900] text-[47px] md:text-[30px] sm:text-[22px] text-[#000000]'>{dict?.blogAndNews?.titles?.allNews}</p></div>
+          <p className='font-[900] font-montserratTitle uppercase text-[47px] md:text-[30px] sm:text-[22px] text-[#000000]'>{dict?.blogAndNews?.titles?.allNews}</p></div>
 
         <div className='flex justify-evenly md:justify-center sm:justify-center items-center gap-[34px] pb-[34px] flex-wrap pt-[53px]'>{news?.map((event, index) => (
           <BlogAndNewsCard event={event} dict={dict} key={index} />
@@ -192,7 +192,7 @@ const BlogAndNews = ({ dict }) => {
             <img src='/calendar-preview.svg' alt='calendar' />
             <div className='flex flex-col'>
               <p className='font-[900] text-[32px] text-[#000]'>{dict?.blogAndNews?.titles?.calendar}</p>
-              <span className='font-[700] text-[13px] text-[#0072BC]'>{dict?.blogAndNews?.titles?.allEvent}</span>
+              {/* <span className='font-[700] text-[13px] text-[#0072BC]'>{dict?.blogAndNews?.titles?.allEvent}</span> */}
             </div>
           </div>
           <div className='w-[325px] h-[551px] sm:w-full md:w-full flex p-7 shadow-lg' style={{

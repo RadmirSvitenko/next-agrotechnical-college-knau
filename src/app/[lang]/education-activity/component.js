@@ -59,21 +59,21 @@ const EducationActivity = ({ dict }) => {
 
   return (
     <div className='flex flex-col w-full justify-center items-center pt-[58px] md:pt-[30px] sm:pt-3 px-[125px] md:px=[70px] sm:px-5'>
-      <div className='flex w-full flex-wrap gap-[100px] xl:h-[275px] h-auto py-[18px] px-[20px] border-[1px] border-[#0072BC]'>
+      <div className='flex w-full flex-wrap gap-[100px] xl:h-[275px] h-auto py-[18px] px-[20px] border-[1px] lg:justify-center rounded-[5px] border-[#0072BC]'>
 
         <div style={{
           backgroundImage: `url('/education-activity-preview.png')`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center"
-        }} className='xl:w-[412px] w-full xl:h-full h-[275px] relative flex justify-center items-center'>
+        }} className='xl:w-[412px] w-full xl:h-full h-[275px] relative flex justify-center items-center rounded-[5px]'>
           <div className='absolute right-[-54px] xl:top-[50%] xl:transform xl:translate-y-[-50%] bottom-[-54px] xl:left-[100%] left-[50%] transform translate-x-[-50%] rounded-lg bg-white shadow-lg w-[108px] h-[108px] flex justify-center items-center mission-box-icon'>
             <img src='/education-mission-icon.svg' alt='education' />
           </div>
         </div>
 
 
-        <div className='flex flex-col justify-evenly gap-5 tracking-[1px] items-start h-full'>
+        <div className='flex flex-col justify-evenly lg:items-center gap-5 tracking-[1px] items-start h-full'>
           <p className='text-[#000] text-[34px] font-[800]'>{dict?.educationActivity?.mission?.title}</p>
 
           <span className='text-[#000] text-[14px] tracking-[1px] font-[400]'>{dict?.educationActivity?.mission?.descriptionOne}</span>

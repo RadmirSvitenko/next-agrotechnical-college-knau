@@ -12,7 +12,7 @@ const CoursesAndPrograms = ({ course, dict }) => {
   return (
     <div className={`flex flex-col w-[350px] h-[520px] ${path !== `/${lang}/additional-education` && 'cursor-pointer'}" `}>
       <img
-        src={course?.image}
+        src={course?.image + ".png"}
         alt={course?.title} className='w-full h-[220px]' />
       <div className='w-full h-[300px] flex flex-col  gap-4 justify-evenly px-[30px] py-[20px] items-start bg-[#0072BC] shadow-xl'>
         <p className='text-[24px] font-[700] text-[#fff]'>{course?.title}</p>

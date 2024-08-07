@@ -34,7 +34,7 @@ const MainFormBlock = ({ dict }) => {
         </div>
 
         <button
-          onClick={() => router.push(`${lang}/contacts`)}
+          onClick={() => router.push(`/${lang}/contacts#form`)}
           className="bg-[#0079C1] text-[#FFFFFF] text-[16px] sm:text-[12px] font-[700] text-center px-[72px] md:px-[36px] sm:px-2 py-4 md:py-3 sm:py-2 rounded-lg"
         >
           {dict?.mainPage?.mainBlockFeedback?.buttonSubmit}

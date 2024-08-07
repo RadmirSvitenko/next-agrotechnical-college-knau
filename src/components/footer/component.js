@@ -61,13 +61,29 @@ const Footer = () => {
         </div>
 
         <div className='flex flex-col justify-between items-center gap-[11px] md:px-4 sm:px-3'>
-          <img src='/footer-logo-two.svg' className='w-[100px] h-[100px]' />
-          <p className='font-[400] text-[14px] text-[#fff]'>{dict?.footer?.list?.educationalPortal}</p>
+          <img onClick={() => router.push(`http://cdo.atk.kg/`)} src='/footer-logo-two.svg' className='w-[100px] h-[100px] cursor-pointer' />
+          <p onClick={() => router.push(`http://cdo.atk.kg/`)} className='cursor-pointer font-[400] text-[14px] text-[#fff]'>{dict?.footer?.list?.educationalPortal}</p>
           <p className='font-[400] text-[16px] text-[#fff]'>{dict?.footer?.list?.address}</p>
           <p className='font-[400] text-[16px] text-[#fff]'>{dict?.footer?.list?.phone}</p>
         </div>
       </div>
-    </div >
+    </div>
+
+    <div className='w-full flex justify-end py-8 px-4'>
+      <div className='flex justify-around items-center w-auto gap-5 min-w-[100px]'>
+        <a href='https://www.instagram.com/atkbishkek/'>
+          <img src='/insta-footer-icon.svg' className='w-[32px] h-[32px] transition-[1s] hover:transition-[1s] cursor-pointer hover:text-[#922c81] fill-[#922c81]' />
+        </a>
+
+        <a href='https://www.facebook.com/profile.php?id=100080395770610&mibextid=LQQJ4d'>
+          <img src='/facebook-footer-icon.svg' className='w-[32px] h-[32px] transition-[1s] hover:transition-[1s] cursor-pointer hover:text-[#922c81] fill-[#922c81]' />
+        </a>
+
+        <a href='https://www.tiktok.com/@atkbishkek?_t=8oaQnN8uggK&_r=1'>
+          <img src='/tiktok-footer-icon.svg' className='w-[32px] h-[32px] transition-[1s] hover:transition-[1s] cursor-pointer hover:text-[#922c81] fill-[#922c81]' />
+        </a>
+      </div>
+    </div>
   </div >
 };
 

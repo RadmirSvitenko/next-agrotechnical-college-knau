@@ -3,13 +3,17 @@
 import Map from '@/components/map/component'
 import { API } from '@/requester';
 import axios from 'axios';
-import { useParams } from 'next/navigation';
+import { useParams, usePathname, useRouter } from 'next/navigation';
 import React, { useCallback, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
+import './styles.css'
 
 const Contacts = ({ dict }) => {
   const [contacts, setContacts] = useState([]);
+
   const { lang } = useParams()
+  const path = usePathname()
+  const router = useRouter()
 
   const handleGetContacts = useCallback(async () => {
     const response = await API.get('abouts/contacts/');
@@ -32,6 +36,20 @@ const Contacts = ({ dict }) => {
     await response.data;
   }, []);
 
+  const scrollToForm = () => {
+    const formElement = document.getElementById('form');
+    if (formElement) {
+      setTimeout(() => {
+        formElement.scrollIntoView({ behavior: 'smooth' });
+      }, 500);
+    }
+  };
+
+  useEffect(() => {
+    if (path === `/${lang}/contacts#form`) {
+      scrollToForm();
+    }
+  }, [path]);
 
   return (
     <div className='w-full h-auto min-h-screen flex flex-col gap-4 pt-[61px] flex-wrap'>
@@ -41,9 +59,9 @@ const Contacts = ({ dict }) => {
           {contacts?.map((contact, index) => (
             <div key={index} className='flex flex-col'>
               <div className='flex flex-col pb-4'>
-                <p className='text-[22px] text-[#0079C1] font-[600]'>{contact?.[`role_${lang}`]}</p>
+                <p className='text-[22px] text-[#0079C1] font-[600]'>{contact?.[`role_${lang} `]}</p>
 
-                <span className='text-[16px] text-[#292C3D] font-[400]'>{contact?.[`title_${lang}`]}</span>
+                <span className='text-[16px] text-[#292C3D] font-[400]'>{contact?.[`title_${lang} `]}</span>
               </div>
 
               <div className='flex gap-3 items-center'>
@@ -105,7 +123,7 @@ const Contacts = ({ dict }) => {
 
         <Map />
 
-        <div className='w-full justify-center flex-col flex items-center'>
+        <div id='form' className='w-full justify-center flex-col flex items-center'>
           <div
             className={
               'sm:pt-[20px] relative flex justify-center items-center bg-[#F0F7FF] w-full h-auto z-20'

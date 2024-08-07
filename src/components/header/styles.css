@@ -6,3 +6,7 @@
     rgba(102, 102, 102, 0) 100%
   );
 }
+
+.placeholder {
+  font-family: Montserrat, sans-serif, Open-Sans;
+}

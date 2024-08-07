@@ -19,11 +19,13 @@ const config = {
           fontFamily: {
             montserratBlack: ['Montserrat', 'sans-serif'],
             montserratSemibold: ['Montserrat', 'sans-serif'],
+            montserratTitle: ['Montserrat', 'Open Sans', 'sans-serif'],
           },
 
           fontWeight: {
             'black': 800,
             'semibold': 600,
+            'title': 900
           },
         },
       },

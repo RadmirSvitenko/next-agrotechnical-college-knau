@@ -5,13 +5,14 @@ import Footer from '@/components/footer/component';
 
 const montserratBlack = Montserrat({ weights: [800], subsets: ['latin'] });
 const montserratSemibold = Montserrat({ weights: [600], subsets: ['latin'] });
+const montserratTitle = Montserrat({ weights: [900], subsets: ['latin'] });
 
 export const metadata = {
   title: 'Главная | Агротехнический колледж имени Султана Ибраимова',
   description: 'Агротехнический колледж имени Султана Ибраимова',
 };
 
-const fontClasses = [montserratBlack.className, montserratSemibold.className].join(' ');
+const fontClasses = [montserratBlack.className, montserratSemibold.className, montserratTitle.className].join(' ');
 
 export default function RootLayout({ children }) {
   return (
@@ -21,7 +22,6 @@ export default function RootLayout({ children }) {
       </head>
 
       <body
-        style={{ fontFamily: 'Montserrat Medium, sans-serif' }}
         className="max-w-[1920px] mx-auto"
       >
         <Header />
