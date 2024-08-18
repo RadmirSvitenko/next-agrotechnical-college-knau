@@ -9,6 +9,7 @@ import { useForm } from 'react-hook-form';
 import './styles.css'
 
 const Contacts = ({ dict }) => {
+  //for commit
   const [contacts, setContacts] = useState([]);
 
   const { lang } = useParams()
