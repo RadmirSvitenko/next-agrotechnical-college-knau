@@ -15,8 +15,8 @@ const CooperationPrograms = ({ dict }) => {
         </span>
       </div>
 
-      <div className='bg-white p-2.5 rounded'>
-        <img className='rounded-sm preview-programs md:w-full md:h-full' src='/cooperation-programs-preview.png' alt={dict?.cooperation?.programsBlock?.title} />
+      <div className='bg-white p-2.5 rounded sm:w-full sm:h-[300px]'>
+        <img className='rounded-sm preview-programs sm:w-full sm:h-[300px] md:w-full md:h-full' src='/cooperation-programs-preview.png' alt={dict?.cooperation?.programsBlock?.title} />
       </div>
     </div>
   )

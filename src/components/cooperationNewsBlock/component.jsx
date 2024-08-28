@@ -32,7 +32,8 @@ const CooperationNewsBlock = ({ dict, news }) => {
             ?.filter((event, index) => index === 0 || index === 1)
             .map((event, index) => (
               <div
-                className="w-[612px] md:w-[490px] h-[340px] sm:w-full p-5 news-box flex flex-col justify-evenly items-start"
+                onClick={() => router.push(`/${lang}/news/${event?.id}`)}
+                className="w-[612px] cursor-pointer md:w-[490px] h-[340px] sm:w-full p-5 news-box flex flex-col justify-evenly items-start"
                 style={{
                   backgroundImage: `url(${event?.image})`,
                   backgroundSize: '100% 100%',

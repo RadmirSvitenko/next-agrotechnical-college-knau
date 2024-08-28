@@ -14,7 +14,7 @@ const Header = () => {
   const [dict, setDict] = useState('ru');
   const [modalHeader, setModalHeader] = useState(false);
 
-  const { lang, value } = useParams()
+  const { lang, value, newsId } = useParams()
   const path = usePathname();
   const router = useRouter();
   const theme = useTheme();
@@ -41,6 +41,12 @@ const Header = () => {
     (headerImage = `/blog-and-news-preview.png`),
       (headerTitle = dict?.header?.previews?.titles?.blogAndNews),
       (headerDescription = dict?.header?.previews?.descriptions?.blogAndNews)
+  }
+
+  if (path === `/${lang}/news/${newsId}`) {
+    (headerImage = `/blog-and-news-preview.png`),
+      (headerTitle = dict?.header?.previews?.titles?.blogAndNewsDetails),
+      (headerDescription = dict?.header?.previews?.descriptions?.blogAndNewsDetails)
   }
 
   if (path === `/${lang}/blog-and-news`) {

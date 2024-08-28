@@ -16,6 +16,7 @@
       "titles": {
         "main": "Home",
         "blogAndNews": "Blog and News Feed",
+        "blogAndNewsDetails": "About the event",
         "educationActivity": "Educational Activity",
         "teachers": "For Teachers",
         "gallary": "Multimedia",
@@ -29,6 +30,7 @@
       "descriptions": {
         "main": "This is the main page",
         "blogAndNews": "KNAU Blog and News page",
+        "blogAndNewsDetails": "On this page, you can learn about a specific event.",
         "educationActivity": "KNAU Educational Activity",
         "teachers": "Page for teachers",
         "gallary": "KNAU Multimedia",
@@ -298,6 +300,9 @@
     },
     "advantages": {
       "title": "Advantages of Additional Education"
+    },
+    "sertificates": {
+      "title": "Sertificates"
     }
   },
 

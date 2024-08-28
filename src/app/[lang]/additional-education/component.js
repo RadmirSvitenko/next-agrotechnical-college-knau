@@ -11,16 +11,25 @@ import './styles.css';
 
 import AdditionalEducationAdvantages from '@/components/additionalEducationAdvantages/component';
 import { API } from '@/requester';
+import { useParams } from 'next/navigation';
 
 const AdditionalEducation = ({ dict }) => {
-
   const [courses, setCourses] = useState([])
+  const [sertificates, setSertificates] = useState([]);
+
+  const { lang } = useParams()
 
   const handleGetCourses = useCallback(async () => {
     const response = await API.get('education/courses-programms')
     const data = await response.data.results
     setCourses(data)
   }, [])
+
+  const handleGetSertificates = useCallback(async () => {
+    const response = await API.get(`abouts/sertificates/`);
+    const data = await response.data.results;
+    setSertificates(data);
+  }, []);
 
 
   const allCourses = [
@@ -74,6 +83,7 @@ const AdditionalEducation = ({ dict }) => {
 
   useEffect(() => {
     handleGetCourses()
+    handleGetSertificates()
   }, [handleGetCourses])
 
   return (
@@ -123,6 +133,27 @@ const AdditionalEducation = ({ dict }) => {
         <div className='w-full gap-4 md:gap-7 sm:gap-10 flex flex-wrap py-[50px] justify-evenly items-center'>
           {advantages?.map((advantage, index) => (
             <AdditionalEducationAdvantages advantage={advantage} dict={dict} key={index} />
+          ))}
+        </div>
+      </div>
+
+      <div className='w-full flex flex-col pt-[63px] justify-between items-start'>
+        <p className='text-[#000000] text-start text-[34px] md:text-[28px] sm:text-[22px] font-[600]'>{dict?.additionalEducation?.sertificates?.title}</p>
+
+        <div className='w-full gap-4 md:gap-7 sm:gap-10 flex flex-wrap py-[50px] justify-between items-center'>
+          {sertificates?.map((sertificate, index) => (
+            <div key={index} className='w-[330px] h-[390px] flex flex-col justify-between items-start'>
+              <div
+              className='w-[330px] h-[390px] shadow-sm'
+                style={{
+                  backgroundImage: `url(${sertificate?.image})`,
+                  backgroundSize: "cover",
+                  backgroundRepeat: "no-repeat",
+                  backgroundPosition: "center"
+                }}
+              >
+              </div>
+            </div>
           ))}
         </div>
       </div>

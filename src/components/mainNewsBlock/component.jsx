@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import React, { useCallback, useEffect, useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import React, { useCallback, useEffect, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
 
-import 'swiper/css';
-import 'swiper/css/navigation';
-import './styles.css';
+import "swiper/css";
+import "swiper/css/navigation";
+import "./styles.css";
 
-import { Navigation } from 'swiper/modules';
-import { useParams, useRouter } from 'next/navigation';
+import { Navigation } from "swiper/modules";
+import { useParams, useRouter } from "next/navigation";
 
 const MainNewsBlock = ({ dict, news }) => {
   const { lang } = useParams();
@@ -87,42 +87,38 @@ const MainNewsBlock = ({ dict, news }) => {
           </span>
         </div>
 
-        <div className="flex w-full pt-[71px] pb-[100px] px-[80px] gap-4">
+        <div className="flex w-full pt-[71px] max-h-[900px] pb-[100px] px-[80px] gap-5">
           {news
             ?.filter((event, index) => index === 0)
             .map((event, index) => (
-              <div className="flex flex-col w-1/2">
+              <div
+                onClick={() => router.push(`${lang}/news/${event?.id}`)}
+                className="flex flex-col w-1/2 hover:shadow-xl hover:cursor-pointer hover:transition-[1s]"
+              >
                 <img
                   src={event?.image}
                   alt={event?.[`title_${lang}`]}
-                  className="w-full h-[35%]"
+                  className="w-full h-[60%]"
                 />
-                <div className="bg-[#0072BC] flex flex-col p-8 justify-evenly items-start text-[#fff] w-full h-[65%]">
+                <div className="bg-[#0072BC] flex flex-col p-8 justify-evenly items-start text-[#fff] w-full h-[40%]">
                   <p className="font-[900] text-[#FFFFFF] md:text-[9px] text-[11px]">
                     {String(event?.date)?.slice(0, 10)}
                   </p>
                   <p
                     onClick={() => router.push(`${lang}/news/${event?.id}`)}
-                    className="font-[600] hover:underline hover:cursor-pointer text-[#FFFFFF] md:text-[28px] text-[34px]"
+                    className="font-[600] hover:underline hover:cursor-pointer text-[#FFFFFF] md:text-[16px] lg:text-[22px] sm:text-[20px] xl:text-[26px] xxl:text-[32px]"
                   >
                     {event?.[`title_${lang}`]}
                   </p>
                   <span className="block py-1 overflow-hidden md:text-[14px] text-[18px] text-[#FFFFFF] font-[400] w-full max-h-12 leading-3 truncate">
                     {event?.[`description_${lang}`]}
                   </span>
-                  <span
-                    onClick={() => router.push(`${lang}/news`)}
-                    className="flex gap-3 cursor-pointer justify-between items-center font-[700]
-          text-[10px] tracking-[1.02px] text-[#ffffff]"
+                  <button
+                    onClick={() => router.push(`${lang}/news/${event?.id}`)}
+                    className="cursor-pointer hover:underline pt-4"
                   >
-                    {dict?.mainPage?.mainNews?.link}
-
-                    <img
-                      className="w-[3.5px]"
-                      src="next-btn-main-news.png"
-                      alt={event?.[`title_${lang}`]}
-                    />
-                  </span>
+                    {dict?.blogAndNews?.titles?.aboutButton}
+                  </button>
                 </div>
               </div>
             ))}
@@ -131,14 +127,17 @@ const MainNewsBlock = ({ dict, news }) => {
             {news
               ?.filter((event, index) => index > 0 && index <= 2)
               .map((event, index) => (
-                <div className="flex shadow-sm border-[#ECECEC] border-[1.5px] flex-col h-1/2">
-                  <div className="flex flex-col items-start justify-between">
+                <div
+                  onClick={() => router.push(`${lang}/news/${event?.id}`)}
+                  className="flex shadow-sm cursor-pointer hover:shadow-lg border-[#ECECEC] border-[1.5px] flex-col h-1/2"
+                >
+                  <div className="flex flex-col items-start">
                     <img
                       src={event?.image}
                       alt={event?.[`title_${lang}`]}
-                      className="w-full h-1/2"
+                      className="w-full h-[200px]"
                     />
-                    <div className="flex p-4 w-full h-1/2 gap-3 flex-col justify-evenly">
+                    <div className="flex p-4 w-full gap-3 flex-col justify-start">
                       <p className="font-[900] text-[#838383] md:text-[9px] text-[11px]">
                         {String(event?.date)?.slice(0, 10)}
                       </p>

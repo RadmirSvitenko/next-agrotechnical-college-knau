@@ -6,6 +6,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import './styles.css'
 import { useParams } from 'next/navigation'
 import { API } from '@/requester'
+import { ArrowForwardIos } from '@mui/icons-material'
 
 const BlogAndNews = ({ dict }) => {
   const [animDoc, setAnimDoc] = useState(0)
@@ -155,14 +156,13 @@ const BlogAndNews = ({ dict }) => {
               }}
               className={`${animDoc === index ? 'w-[40%]' : 'w-[20%]'} p-[22px] justify-end sm:w-full md:w-full h-[650px] relative flex flex-col  `}
             >
-              {/* ${animDoc !== doc?.title ? 'rotate-270' : ''} */}
               <div className='h-[200px]  overflow-y-hidden transform transition-transform duration-300 ease-in-out gap-[9px]'>
                 <p className='font-[700] text-[33px] text-[#fff]'>{doc?.[`title_${lang}`]}</p>
                 <span className='font-[700] text-[16px] text-[#fff]'>{doc?.[`description${lang}`]}</span>
-                {/* <span className="flex gap-3 pt-[60px] cursor-pointer items-center font-[700] text-[14px] sm:text-[10px] tracking-[1.5px] text-[#ffffff]">
+                <span className="flex gap-3 pt-[60px] cursor-pointer items-center font-[700] text-[14px] sm:text-[10px] tracking-[1.5px] text-[#ffffff]">
                   {dict?.blogAndNews?.titles?.aboutButton}
                   <ArrowForwardIos sx={{ fontSize: '14px' }} />
-                </span> */}
+                </span>
               </div>
             </div>
           ))}

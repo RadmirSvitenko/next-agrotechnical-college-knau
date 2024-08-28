@@ -59,7 +59,7 @@ const EducationActivity = ({ dict }) => {
 
   return (
     <div className='flex flex-col w-full justify-center items-center pt-[58px] md:pt-[30px] sm:pt-3 px-[125px] md:px=[70px] sm:px-5'>
-      <div className='flex w-full flex-wrap gap-[100px] xl:h-[275px] h-auto py-[18px] px-[20px] border-[1px] lg:justify-center rounded-[5px] border-[#0072BC]'>
+      <div className='flex w-full xxl:flex-nowrap flex-wrap gap-[100px] xl:h-[275px] h-auto py-[18px] px-[20px] border-[1px] lg:justify-center rounded-[5px] border-[#0072BC]'>
 
         <div style={{
           backgroundImage: `url('/education-activity-preview.png')`,
@@ -112,9 +112,9 @@ const EducationActivity = ({ dict }) => {
 
       <div className='pt-[53px] pb-[55px] '>
         <div className='flex flex-wrap justify-between 
-         lg:w-full xl:w-full max-w-[1000px] w-full min-h-[450px]'>
-          <div className='flex border-[1px] border-[#0072BC] flex-col p-[22px] xl:w-[322px] w-full'>
-            <img src='/college-value-preview.png' className='w-full h-[320px] pb-5' />
+         lg:w-full gap-10 xl:w-full max-w-[1000px] w-full min-h-[450px]'>
+          <div className='flex border-[1px] border-[#0072BC] flex-col lg:items-center  p-[22px] xl:w-[322px] w-full'>
+            <img src='/college-value-preview.png' className='w-full lg:w-[80%] h-[320px] pb-5' />
             <p className='font-[800] text-[34px] md:text-[24px] sm:text-[20px] text-[#000]'>{dict?.educationActivity?.routesLearning?.title}</p>
           </div>
 
