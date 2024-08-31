@@ -91,7 +91,7 @@ const EducationActivity = ({ dict }) => {
         </div>
       </div>
 
-      <div className='xl:w- lg:w-full xl:w-full max-w-[1440px] border-[1px] gap-5 border-[#0072BC] rounded-[5px] flex flex-wrap md:items-center sm:items-center p-5 justify-between'>
+      <div className='lg:w-full xl:w-full xxl:flex-nowrap max-w-[1440px] border-[1px] gap-5 border-[#0072BC] rounded-[5px] flex flex-wrap md:items-center sm:items-center p-5 justify-between'>
         <div className='flex flex-col justify-evenly xl:max-w-[500px] w-full'>
           <p className='font-[800] text-[34px] xl:text-start text-center text-[#000]'>{dict?.educationActivity?.strategicGoal?.title}</p>
           <span className='font-[400] text-[14px] leading-[22px] text-[#000]'>{dict?.educationActivity?.strategicGoal?.descriptionOne}</span>
@@ -110,9 +110,9 @@ const EducationActivity = ({ dict }) => {
         </div>
       </div>
 
-      <div className='pt-[53px] pb-[55px] '>
+      <div className='pt-[53px] pb-[55px]'>
         <div className='flex flex-wrap justify-between 
-         lg:w-full gap-10 xl:w-full max-w-[1000px] w-full min-h-[450px]'>
+         lg:w-full xxl:w-full gap-10 xl:w-full max-w-[1000px] w-full min-h-[450px]'>
           <div className='flex border-[1px] border-[#0072BC] flex-col lg:items-center  p-[22px] xl:w-[322px] w-full'>
             <img src='/college-value-preview.png' className='w-full lg:w-[80%] h-[320px] pb-5' />
             <p className='font-[800] text-[34px] md:text-[24px] sm:text-[20px] text-[#000]'>{dict?.educationActivity?.routesLearning?.title}</p>

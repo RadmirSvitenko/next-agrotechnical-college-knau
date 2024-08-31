@@ -11,6 +11,7 @@ import { ArrowForwardIos } from '@mui/icons-material'
 const BlogAndNews = ({ dict }) => {
   const [animDoc, setAnimDoc] = useState(0)
   const [news, setNews] = useState([]);
+  const [documents, setDocuments] = useState([]);
 
   const [newsProps, setNewsProps] = useState({
     search: '',
@@ -21,6 +22,12 @@ const BlogAndNews = ({ dict }) => {
   });
 
   const { lang } = useParams()
+
+  const handleGetDocuments = useCallback(async () => {
+    const response = await API.get('abouts/sample/');
+    const data = response.data.results;
+    setDocuments(data);
+  }, []);
 
   const handleGetNews = useCallback(async () => {
     const response = await API.get(`news/news?page=${newsProps.page}`);
@@ -39,6 +46,7 @@ const BlogAndNews = ({ dict }) => {
 
   useEffect(() => {
     handleGetNews();
+    handleGetDocuments()
   }, [handleGetNews]);
 
 
@@ -142,8 +150,11 @@ const BlogAndNews = ({ dict }) => {
 
       <div className='flex flex-col md:px-[40px] sm:px-4 px-[80px]'>
         <p className='font-[900] text-[34px] sm:text-center md:text-[28] sm:text-[24px] text-[#000000] sm:pb-0 pb-[41px]'>{dict?.blogAndNews?.titles?.simpleDocs}</p>
-        <div className='flex md:flex-col sm:flex-col w-full justify-between md:justify-center sm:justify-center items-center gap-3 pb-[34px] sm:pt-4 pt-[53px]'>
-          {testDocs?.map((doc, index) => (
+        <div className='flex md:flex-col sm:flex-col w-full justify-evenly md:justify-center sm:justify-center items-center gap-3 pb-[34px] sm:pt-4 pt-[53px]'>
+
+          {/* Дизайн под вопросом */}
+
+          {/* {testDocs?.map((doc, index) => (
             <div
               onMouseMove={() => setAnimDoc(index)}
               onMouseLeave={() => setAnimDoc(0)}
@@ -165,8 +176,57 @@ const BlogAndNews = ({ dict }) => {
                 </span>
               </div>
             </div>
+          ))} */}
+
+
+
+          {/* вариант дизайна номер 2 */}
+
+
+
+          {/* вариант 3 */}
+
+          {documents?.map((document, index) => (
+            <div
+              key={index}
+              className={
+                'flex gap-5 w-[300px] items-center py-4 px-5 justify-between border-[1px] border-[#DEE2E6] rounded-md'
+              }
+            >
+              <div className={'flex gap-2'}>
+                {/* <div className="w-[48px] h-[48px] flex justify-center items-center bg-[#0072BC] rounded-[4px]">
+                  <span className="text-[#fff]">
+                    {document?.file.split('.').pop()}
+                  </span>
+                </div> */}
+
+                <div className={'flex flex-col gap-[10px] w-[150px]'}>
+                  <span
+                    className={
+                      'truncate overflow-ellipsis w-[210px] font-[700] text-[12px] text-[#98A6AD]'
+                    }
+                  >
+                    {document?.[`title_${lang}`]}
+                  </span>
+
+                  <span
+                    className={'font-[700] text-[12px] text-[#98A6AD]'}
+                  >
+                    {document?.created_at}
+                  </span>
+                </div>
+              </div>
+              <a href={document?.file} download={document?.[`title_${lang}`]}>
+                <img
+                  src="/download-icon.svg"
+                  alt={document?.[`description_${lang}`]}
+                  className={'w-[24px] h-[24px]'}
+                />
+              </a>
+            </div>
           ))}
         </div>
+
 
         {/* <div
           className={'w-full flex justify-center items-center py-6'}
@@ -231,7 +291,7 @@ const BlogAndNews = ({ dict }) => {
           </div>
         ))}</div>
       </div>
-    </div>
+    </div >
   )
 }
 

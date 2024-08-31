@@ -61,7 +61,7 @@ const ModalHeader = ({ dict, open, onClose, language, setLanguage }) => {
   ];
 
   const languages = [
-    { lang: 'KG', value: 'kg' },
+    { lang: 'KG', value: 'ky' },
     { lang: 'RU', value: 'ru' },
     { lang: 'EN', value: 'en' },
   ];

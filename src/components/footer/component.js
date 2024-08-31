@@ -49,8 +49,8 @@ const Footer = () => {
     <div>
       <div className='flex gap-[80px] justify-between md:justify-center sm:justify-center flex-wrap'>
         <div className='flex gap-[80px] md:gap-[50px] sm:gap-[50px] flex-wrap md:justify-center md:text-center sm:justify-start sm:pl-5'>
-          <div className='flex md:px-4 sm:px-3 flex-col gap-[10px] cursor-pointer'>{footerListOne?.map(({ name, link }) => (
-            <p onClick={() => router.push(link)} className='font-[400] text-[16px] text-[#fff] hover:underline'>{name}</p>
+          <div className='flex md:px-4 sm:px-3 flex-col gap-[10px] cursor-pointer'>{footerListOne?.map(({ name, link }, index) => (
+            <p key={index} onClick={() => router.push(link)} className='font-[400] text-[16px] text-[#fff] hover:underline'>{name}</p>
           ))}
           </div>
 
