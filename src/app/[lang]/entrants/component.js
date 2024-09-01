@@ -14,15 +14,29 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 
 import { Navigation } from 'swiper/modules';
-import { Accordion, AccordionDetails, AccordionSummary, IconButton } from '@mui/material'
+import { Accordion, AccordionDetails, AccordionSummary, IconButton, Pagination } from '@mui/material'
 import { ArrowDropDownRounded, KeyboardArrowDownRounded } from '@mui/icons-material'
 
 const Entrants = ({ dict }) => {
   const [prioretyDate, setPrioretyDate] = useState([])
   const [specializations, setSpecializations] = useState([])
   const [faq, setFaqs] = useState([])
+  const [specializationsProps, setSpecializationsProps] = useState({
+    search: '',
+    page: 1,
+    pageSize: 3,
+    order: 1,
+    count: 0,
+  });
 
   const { lang } = useParams()
+
+  const handleChangePage = (e, page) => {
+    setSpecializationsProps((prevValue) => ({
+      ...prevValue,
+      page: page,
+    }));
+  };
 
   const admissionProcedures = [
     {
@@ -69,10 +83,12 @@ const Entrants = ({ dict }) => {
   }, [])
 
   const handleGetSpecializations = useCallback(async () => {
-    const response = await API.get('education/specialtie')
+    const response = await API.get(`education/specialtie?page=${specializationsProps.page}`)
     const data = response.data.results;
+    const countPage = response.data.count;
     setSpecializations(data)
-  }, [])
+    setSpecializationsProps((prevValue) => ({ ...prevValue, count: countPage }));
+  }, [lang, specializationsProps.page])
 
   const handleGetFaqs = useCallback(async () => {
     const response = await API.get('abouts/faq')
@@ -111,26 +127,37 @@ const Entrants = ({ dict }) => {
             </div>
           </div>
 
-          {specializations && specializations?.length > 0 && (
-            <div className='w-full flex gap-5 flex-col justify-between items-center'>
-              <p className='font-[800] text-[#000] text-[34px] md:text-[20px] sm:text-[18px]'>{dict?.entrants?.specializations?.title}</p>
+          <div className='w-full flex flex-col gap-20 items-center'>
 
-              <div className='w-full flex justify-center items-center'>
-                {/* <Swiper
-                  loop
-                  pagination={{
-                    clickable: true,
-                  }}
-                  spaceBetween={30}
-                  modules={[Navigation]}
-                  className="gallary-swiper"
-                > */}
-                {specializations?.map((route, index) => (
-                  <Specialization dict={dict} route={route} />
-                ))}
+
+            {specializations && specializations?.length > 0 && (
+              <div className='flex w-full gap-5 flex-col justify-evenly items-center'>
+                <p className='font-[800] text-[#000] text-[34px] md:text-[20px] sm:text-[18px]'>{dict?.entrants?.specializations?.title}</p>
+
+                <div className='w-full flex gap-8 flex-wrap justify-center items-center'>
+
+                  {specializations?.map((route, index) => (
+                    <Specialization dict={dict} route={route} />
+                  ))}
+                </div>
               </div>
+            )}
+
+            <div
+              className={'w-full flex justify-center items-center py-6'}
+            >
+              <Pagination
+                variant="outlined"
+                shape="rounded"
+                onChange={handleChangePage}
+                page={specializationsProps?.page}
+                count={Math.ceil(specializationsProps.count / specializationsProps.pageSize) || 1}
+                showFirstButton
+                showLastButton
+                siblingCount={2}
+              />
             </div>
-          )}
+          </div>
 
           <div className='w-full flex md:flex-wrap sm:flex-wrap sm:gap-4 justify-between py-[100px] md:py-[40px] sm:py-6'>
             <div className='w-1/2 md:w-full sm:w-full flex flex-col justify-start gap-[50px]'>

@@ -1,4 +1,5 @@
 {
+  "download": "download",
   "header": {
     "searchField": "Search...",
     "slogan": "Agrotechnical College<br>named after Sultan Ibraimov",
@@ -14,6 +15,7 @@
 
     "previews": {
       "titles": {
+        "electronLibrary": "Electronic Library",
         "main": "Home",
         "blogAndNews": "Blog and News Feed",
         "blogAndNewsDetails": "About the event",
@@ -28,6 +30,7 @@
         "internationalCooperation": "International Cooperation"
       },
       "descriptions": {
+        "electronLibrary": "electronLibrary On this page, you can explore our electronic library",
         "main": "This is the main page",
         "blogAndNews": "KNAU Blog and News page",
         "blogAndNewsDetails": "On this page, you can learn about a specific event.",
@@ -50,7 +53,7 @@
       "blogAndNewsFeed": "Blog and News Feed",
       "additionalEducation": "Additional Education",
       "educationalActivity": "Educational Activity",
-      "multimedia": "Multimedia",
+      "multimedia": "Gallary",
       "informationForStudents": "Information for Students",
       "contactInformation": "Contact Information",
       "informationForTeachers": "Information for Teachers",

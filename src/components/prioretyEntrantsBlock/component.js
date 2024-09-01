@@ -23,7 +23,7 @@ const PrioretyEntrantsBlock = ({ dict }) => {
   return (
     <div className='w-full flex flex-col gap-12 justify-between pb-[50px] md:pb-[30px] sm:pb-4'>
       <div className='p-[20px] flex border-[1px] justify-between items-center border-[#0072BC] rounded-[5px] flex-wrap gap-10 w-full lg:justify-center'>
-        <div className='flex flex-col h-full xxl:w-full xxl:items-center justify-evenly gap-6'>
+        <div className='flex flex-col h-full xxl:items-start justify-evenly gap-6'>
           {listOne?.map((item, index) => (
             <p
               key={index}
@@ -36,12 +36,12 @@ const PrioretyEntrantsBlock = ({ dict }) => {
             </p>
           ))}
         </div>
-        <div className='xl:w-[330px] flex lg:w-[500px] w-full xl:h-[300px] lg:h-[400px]  h-full p-1.5 shadow-xl rounded'>
+        <div className='w-[330px] flex lg:w-[500px] sm:w-full md:w-full xl:items-center xl:justify-center  xxl:items-center xxl:justify-center xl:h-[300px] lg:h-[400px]  h-full p-1.5 shadow-xl rounded'>
           <img src='/entrants-priorety-preview.png' alt={dict?.entrants?.prioretyInformation?.blockOne?.title} className='rounded-[10px] w-full h-full' />
         </div>
       </div>
 
-      <div className='p-[20px] flex-row-reverse flex border-[1px] justify-between items-center border-[#0072BC] rounded-[5px] flex-wrap gap-10 w-full lg:justify-center'>
+      <div className='p-[20px] flex-row-reverse flex border-[1px] justify-between items-center border-[#0072BC] rounded-[5px] flex-wrap gap-10 lg:justify-center'>
         <div className='flex flex-col h-full justify-evenly gap-6'>
           {listTwo?.map((item, index) => (
             <p
@@ -55,7 +55,7 @@ const PrioretyEntrantsBlock = ({ dict }) => {
             </p>
           ))}
         </div>
-        <div className='xl:w-[330px] flex lg:w-[500px] w-full xl:h-[300px] lg:h-[400px]  h-full p-1.5 shadow-xl rounded'>
+        <div className='w-[330px] flex lg:w-[500px] sm:w-full md:w-full xl:items-center xl:justify-center  xxl:items-center xxl:justify-center  xl:h-[300px] lg:h-[400px]  h-full p-1.5 shadow-xl rounded'>
           <img src='/entrants-priorety-preview.png' alt={dict?.entrants?.prioretyInformation?.blockOne?.title} className='rounded-[10px] w-full h-full' />
         </div>
       </div>

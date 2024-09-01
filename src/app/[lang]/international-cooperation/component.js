@@ -3,21 +3,23 @@
 import CooperationNewsBlock from '@/components/cooperationNewsBlock/component'
 import CooperationPrograms from '@/components/cooperationPrograms/component'
 import { API } from '@/requester'
-import { useParams } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 import React, { useCallback, useEffect, useState } from 'react'
-import { Autoplay, EffectCoverflow, Pagination } from 'swiper/modules'
-import { Swiper, SwiperSlide } from 'swiper/react'
 import "./styles.css"
 
-import 'swiper/css';
-import 'swiper/css/effect-coverflow';
-import 'swiper/css/pagination';
 import ProgrammsMiniBox from '@/components/programmsMiniBox/component'
-import { useMediaQuery, useTheme } from '@mui/material'
+import { Pagination, useMediaQuery, useTheme } from '@mui/material'
 
 const InternatonalCooperation = ({ dict }) => {
   const [news, setNews] = useState([])
   const [programms, setProgramms] = useState([])
+  const [programsProps, setProgramsProps] = useState({
+    search: '',
+    page: 1,
+    pageSize: 3,
+    order: 1,
+    count: 0,
+  });
   const [contacts, setContacts] = useState([])
 
   const theme = useTheme();
@@ -37,6 +39,14 @@ const InternatonalCooperation = ({ dict }) => {
   ]
 
   const { lang } = useParams()
+  const router = useRouter()
+
+  const handleChangePage = (e, page) => {
+    setProgramsProps((prevValue) => ({
+      ...prevValue,
+      page: page,
+    }));
+  };
 
   const handleGetNews = useCallback(async () => {
     const response = await API.get("news/news")
@@ -46,10 +56,12 @@ const InternatonalCooperation = ({ dict }) => {
 
 
   const handleGetProgramms = useCallback(async () => {
-    const response = await API.get("education/courses-programms")
+    const response = await API.get(`education/courses-programms?page=${programsProps.page}`)
     const data = await response.data.results
+    const countPage = response.data.count;
     setProgramms(data)
-  }, [])
+    setProgramsProps((prevValue) => ({ ...prevValue, count: countPage }));
+  }, [lang, programsProps.page])
 
   const handleGetContacs = useCallback(async () => {
     const response = await API.get("abouts/contact-information")
@@ -68,40 +80,34 @@ const InternatonalCooperation = ({ dict }) => {
       <CooperationNewsBlock dict={dict} news={news} />
       <CooperationPrograms dict={dict} />
 
-      <div className='w-full  h-[300px] my-10 flex items-center'>
-        {programms && programms.length > 0 && (
-          <Swiper
-            effect={'coverflow'}
-            grabCursor={true}
-            initialSlide={2}
-            centeredSlides={true}
-            autoplay={{
-              Autoplay: 5000,
-              disableOnInteraction: false,
-            }}
-            slidesPerView={3}
-            loop={true}
-            coverflowEffect={{
-              rotate: 50,
-              stretch: 0,
-              depth: 120,
-              modifier: 1,
-              slideShadows: false,
-            }}
-            modules={[EffectCoverflow, Autoplay]}
-            className="programms"
-          >
-            {programms?.map((programm, index) => (
-              <SwiperSlide key={index}>
-                <div className='bg-white w-[300px] h-[300px] shadow-xl rounded-xl p-5 flex flex-col justify-evenly items-center'>
-                  <p className='text-[#000000] truncate w-full text-[26px] font-[700]'>{programm?.[`title_${lang}`]}</p>
+      <div className='w-full h-[500px] flex-wrap gap-5 my-10 flex justify-evenly items-center'>
+        {programms && programms.length > 0 && programms?.map((programm, index) => (
+          <div onClick={() => router.push(`/${lang}/international-cooperation/${programm.id}`)} key={index} className='bg-white cursor-pointer  gap-3 w-[400px] h-[400px] shadow-xl rounded-xl p-5 flex flex-col justify-evenly items-center'>
+            <img className='w-full h-[200px]' src={programm?.image} alt={programm?.[`title_${lang}`]} />
+            <p onClick={() => router.push(`/${lang}/international-cooperation/${programm.id}`)} className='text-[#000000] truncate hover:underline cursor-pointer w-full text-[26px] font-[700]'>{programm?.[`title_${lang}`]}</p>
 
-                  <span>{programm?.[`description_${lang}`]}</span>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        )}
+            <button
+              onClick={() => router.push(`/${lang}/international-cooperation/${programm.id}`)}
+              className="cursor-pointer hover:underline pt-4"
+            >
+              {dict?.blogAndNews?.titles?.aboutButton}
+            </button>
+          </div>
+        ))}
+        <div
+          className={'w-full flex justify-center items-center py-6'}
+        >
+          <Pagination
+            variant="outlined"
+            shape="rounded"
+            onChange={handleChangePage}
+            page={programsProps?.page}
+            count={Math.ceil(programsProps.count / programsProps.pageSize) || 1}
+            showFirstButton
+            showLastButton
+            siblingCount={2}
+          />
+        </div>
       </div>
 
       <div className='py-[50px] flex flex-col gap-[30px]'>

@@ -14,7 +14,7 @@ const Header = () => {
   const [dict, setDict] = useState('ru');
   const [modalHeader, setModalHeader] = useState(false);
 
-  const { lang, value, newsId } = useParams()
+  const { lang, value, newsId, programm } = useParams()
   const path = usePathname();
   const router = useRouter();
   const theme = useTheme();
@@ -61,6 +61,12 @@ const Header = () => {
       (headerDescription = dict?.header?.previews?.descriptions?.educationActivity)
   }
 
+  if (path === `/${lang}/electron-library`) {
+    (headerImage = `/education-activity-preview.png`),
+      (headerTitle = dict?.header?.previews?.titles?.electronLibrary),
+      (headerDescription = dict?.header?.previews?.descriptions?.electronLibrary)
+  }
+
   if (path === `/${lang}/gallary`) {
     (headerImage = `/education-activity-preview.png`),
       (headerTitle = dict?.header?.previews?.titles?.gallary),
@@ -103,7 +109,7 @@ const Header = () => {
       (headerDescription = dict?.header?.previews?.descriptions?.searchResult)
   }
 
-  if (path === `/${lang}/international-cooperation`) {
+  if (path === `/${lang}/international-cooperation` || path === `/${lang}/international-cooperation/${programm}`) {
     (headerImage = `/additional-education-preview.png`),
       (headerTitle = dict?.header?.previews?.titles?.internationalCooperation),
       (headerDescription = dict?.header?.previews?.descriptions?.internationalCooperation)

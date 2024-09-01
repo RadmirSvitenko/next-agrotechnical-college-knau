@@ -1,29 +1,43 @@
 "use client"
 
 import { ArrowForwardIos } from '@mui/icons-material'
-import React from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import "./styles.css"
 import { Pagination } from '@mui/material'
 import InfoMiniBox from '@/components/infoMiniBox/component'
+import { API } from '@/requester'
+import { useParams } from 'next/navigation'
 
 const Teachers = ({ dict }) => {
-  const learningList = [
-    {
-      image: "/college-value-preview.png",
-      title: "Математика",
-      button: dict?.teachers?.button,
-    },
-    {
-      image: "/college-value-preview.png",
-      title: "Физика",
-      button: dict?.teachers?.button,
-    },
-    {
-      image: "/college-value-preview.png",
-      title: "Химия",
-      button: dict?.teachers?.button,
-    },
-  ]
+  const [plans, setPlans] = useState([])
+  const [plansProps, setPlansProps] = useState({
+    search: '',
+    page: 1,
+    pageSize: 3,
+    order: 1,
+    count: 0,
+  });
+
+  const { lang } = useParams()
+
+  const handleChangePage = (e, page) => {
+    setPlansProps((prevValue) => ({
+      ...prevValue,
+      page: page,
+    }));
+  };
+
+  const handleGetPlans = useCallback(async () => {
+    const response = await API.get(`education/schedule?page=${plansProps.page}`)
+    const data = await response.data.results
+    const countPage = response.data.count;
+    setPlans(data)
+    setPlansProps((prevValue) => ({ ...prevValue, count: countPage }));
+  }, [lang, plansProps.page])
+
+  useEffect(() => {
+    handleGetPlans()
+  }, [handleGetPlans])
 
   const materials = [
     {
@@ -73,48 +87,49 @@ const Teachers = ({ dict }) => {
       <div className='flex flex-col justify-between gap-[15px]'>
         <p className='font-[800] text-[34px] text-[#000] text-center'>{dict?.teachers?.title}</p>
 
-        <div className='flex gap-[15px] py-8 justify-between w-full overflow-x-scroll'>
-          {learningList?.map((predmet, index) => (
-            <div key={index} className='flex flex-col relative justify-evenly shadow-xl'>
-              <div className={`w-[335px] min-h-[310px] h-auto p-[25px] flex flex-col justify-between items-center rounded-[5px] shadow-lg`}
+        <div className='flex gap-[30px] py-8 xl:justify-center xxl:justify-center justify-between sm:justify-center md:justify-center w-full flex-wrap'>
+          {plans?.map((predmet, index) => (
+            <div key={index} className='flex sm:items-center flex-col relative xl:items-center justify-evenly shadow-xl'>
+              <div className={`w-[320px] min-h-[310px] h-auto p-[25px] flex flex-col justify-between items-center rounded-[5px] shadow-lg`}
               >
                 <img src={predmet?.image} alt={predmet?.title} className='w-full h-[196px]' />
 
-                <p className='font-[700] text-[20px] text-[#0072BC] text-center pt-[45px]'>{predmet?.title}</p>
+                <p className='font-[700] text-[20px] text-[#0072BC] text-center pt-[45px]'>{predmet?.[`title_${lang}`]}</p>
 
                 <div className='absolute translate-y-[170%] rounded-lg bg-white shadow-sm w-[86px] h-[86px] flex justify-center items-center mission-box-icon'>
                   <img src='/teacher-react-icon.svg' alt={predmet?.title} />
                 </div>
+                <a href={predmet?.file} download={predmet?.[`title_${lang}`]}>
+                  <button
+                    className="cursor-pointer hover:underline pt-4"
+                  >
+                    {dict?.download}
+                  </button>
+                </a>
 
-                <span className="flex gap-3 pt-[60px] cursor-pointer items-center font-[700] text-[14px] sm:text-[10px] tracking-[1.5px] text-[#0072BC]">
-                  {predmet?.button}
-                  <ArrowForwardIos sx={{ fontSize: '14px' }} />
-                </span>
               </div>
             </div>
           ))}
         </div>
 
-        {/* <div
-          className={'w-full flex justify-center items-center py-8'}
+        <div
+          className={'w-full flex justify-center items-center py-6'}
         >
           <Pagination
             variant="outlined"
             shape="rounded"
-            // onChange={handleChangePage}
-            // page={tendersProps.page}
-            page={1}
-            // count={Math.ceil(tendersProps.count / tendersProps.pageSize) || 1}
-            count={5}
+            onChange={handleChangePage}
+            page={plansProps?.page}
+            count={Math.ceil(plansProps.count / plansProps.pageSize) || 1}
             showFirstButton
             showLastButton
             siblingCount={2}
           />
-        </div> */}
+        </div>
 
         <div className='pt-[53px] pb-[55px]'>
-          <div className='flex flex-wrap xl:gap-0 gap-7 justify-start w-full min-h-[450px]'>
-            <div className='flex border-[1px] border-[#0072BC] flex-col p-[22px] xl:w-[30%] w-full'>
+          <div className='flex flex-wrap xl:gap-0 gap-7 justify-start xl:justify-center xxl:justify-center w-full min-h-[450px]'>
+            <div className='flex border-[1px] border-[#0072BC] flex-col p-[22px] xl:w-[30%] xxl:w-[40%] xxl:items-center w-full'>
               <img src='/college-value-preview.png' className='w-full h-[320px] pb-5' />
               <p className='font-[800] text-[34px] md:text-[24px] sm:text-[20px] text-[#000]'>{dict?.teachers?.materials?.title}</p>
             </div>

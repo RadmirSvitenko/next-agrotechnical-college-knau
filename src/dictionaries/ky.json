@@ -1,4 +1,5 @@
 {
+  "download": "жүктөө",
   "header": {
     "searchField": "Издөө...",
     "slogan": "Султан Ибраимов атындагы<br>Агротехникалык колледж",
@@ -13,6 +14,7 @@
     },
     "previews": {
       "titles": {
+        "electronLibrary": "Электрондук китепкана",
         "main": "Башкы бет",
         "blogAndNews": "Блог жана жаңылыктар лентасы",
         "blogAndNewsDetails": "Окуя жөнүндө",
@@ -27,6 +29,7 @@
         "internationalCooperation": "Эл аралык кызматташтык"
       },
       "descriptions": {
+        "electronLibrary": "Бул бетте сиз биздин электрондук китепкананы изилдей аласыз",
         "main": "Бул башкы бет",
         "blogAndNews": "КНАУ блог жана жаңылыктар беттеги",
         "blogAndNewsDetails": "Бул бетте сиз конкреттүү окуя жөнүндө биле аласыз.",
@@ -49,7 +52,7 @@
       "blogAndNewsFeed": "Блог жана жаңылыктар лентасы",
       "additionalEducation": "Кошумча билим берүү",
       "educationalActivity": "Билим берүү ишмердүүлүгү",
-      "multimedia": "Мультимедиа",
+      "multimedia": "Галерея",
       "informationForStudents": "Студенттер үчүн маалымат",
       "contactInformation": "Контакт маалыматтары",
       "informationForTeachers": "Окуутуучулар үчүн маалымат",

@@ -9,7 +9,6 @@ import { useForm } from 'react-hook-form';
 import './styles.css'
 
 const Contacts = ({ dict }) => {
-  //for commit
   const [contacts, setContacts] = useState([]);
 
   const { lang } = useParams()
@@ -54,7 +53,7 @@ const Contacts = ({ dict }) => {
 
   return (
     <div className='w-full h-auto min-h-screen flex flex-col gap-4 pt-[61px] flex-wrap'>
-      <div className='md:px-0 sm:px-0 flex-wrap flex max-w-[1440px] gap-10'>
+      <div className='md:px-0 sm:px-0 flex-wrap flex gap-10'>
         <div className='flex px-[80px] flex-col justify-evenly sm:px-4 gap-4 md:w-full sm:w-full'>
           <p className='font-[600] text-[40px] md:text-[30px] sm:text-[20px] text-[#292C3D]'>{dict?.contacts?.title}</p>
           {contacts?.map((contact, index) => (
